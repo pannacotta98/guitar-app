@@ -1,9 +1,7 @@
 import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-import ChordArea from './components/ChordArea';
-import ChordSelection from './components/ChordSelection';
-import NavBar from './components/NavBar';
+import ChordArea from './ChordArea';
+import ChordSelection from './ChordSelection';
+import NavBar from './NavBar';
 
 function App() {
   return (

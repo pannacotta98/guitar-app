@@ -1,8 +1,11 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+/* RESET */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,12 +49,7 @@ table {
 	border-collapse: collapse;
   border-spacing: 0;
 }
-
 /* --- */
-
-:root {
-  --main-shadow: 5px 5px 13px 0px rgba(0, 0, 0, 0.2);
-}
 
 html {
   box-sizing: border-box;
@@ -62,16 +60,10 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: 'Montserrat', sans-serif;;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #272727;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  background-color: ${(props) => props.theme.colors.darkBackground};
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -89,40 +81,6 @@ h2 {
 h3 {
   font-size: 1.2rem;
 }
+`;
 
-/* testing svg stuff */
-text {
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.cls-1 {
-  fill: #ffe291;
-}
-
-.cls-2, .cls-4 {
-  fill: none;
-}
-
-.cls-2 {
-  stroke: #b4b4b4;
-}
-
-.cls-2, .cls-3, .cls-4 {
-  stroke-miterlimit: 10;
-}
-
-.cls-2, .cls-3 {
-  stroke-width: 3px;
-}
-
-.cls-3 {
-  fill: #fff;
-  stroke: #fff;
-}
-
-.cls-4 {
-  stroke: #464646;
-  stroke-linecap: round;
-  stroke-width: 5px;
-}
+export default GlobalStyle;

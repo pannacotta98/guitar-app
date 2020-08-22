@@ -3,24 +3,24 @@ import styled from 'styled-components';
 
 const ChordNameHeading = styled.h1`
   text-align: center;
-  color: white;
+  color: ${(props) => props.theme.colors.contrastingText};
   font-size: 3rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 `;
 
 const MainContainer = styled.div`
-  background-color: #363636;
+  background-color: ${(props) => props.theme.colors.lighterBackground};
   padding: 2rem 1rem;
-  box-shadow: var(--main-shadow);
+  box-shadow: ${(props) => props.theme.shadows.main};
   position: relative;
 `;
 
 // TODO Use variables for main colors and shadow probably
 const TestButton = styled.button`
-  background-color: #464646;
+  background-color: ${(props) => props.theme.colors.button};
   border: none;
-  color: white;
+  color: ${(props) => props.theme.colors.contrastingText};
   padding: 1rem 2rem;
   text-align: center;
   text-decoration: none;
@@ -34,12 +34,12 @@ const TestButton = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: #4f4f4f;
+    background-color: #4f4f4f; /*TODO*/
     box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
   }
 
   :active {
-    background-color: #3f3f3f;
+    background-color: #3f3f3f; /*TODO*/
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
   }
 

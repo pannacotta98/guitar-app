@@ -1,25 +1,63 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const ChordDiv = styled.div`
+  max-width: 230px;
+  /* padding: 3rem; */
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5)); /* TODO Match other shadows */
+  transition: 0.1s;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.05);
+  }
+`;
+
+// prettier-ignore
+const StyledSvg = styled.svg`
+  text {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .cls-1 {
+    fill: ${props => props.theme.colors.fretboard};
+  }
+
+  .cls-2, .cls-4 {
+    fill: none;
+  }
+
+  .cls-2 {
+    stroke: #b4b4b4;
+  }
+
+  .cls-2, .cls-3, .cls-4 {
+    stroke-miterlimit: 10;
+  }
+
+  .cls-2, .cls-3 {
+    stroke-width: 3px;
+  }
+
+  .cls-3 {
+    fill: #fff;
+    stroke: #fff;
+  }
+
+  .cls-4 {
+    stroke: #464646;
+    stroke-linecap: round;
+    stroke-width: 5px;
+  }
+`;
+
 export default class Chord extends React.Component {
   render() {
-    // DONT do this; bad for performance
-    const ChordDiv = styled.div`
-      max-width: 230px;
-      /* padding: 3rem; */
-      filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5)); /* TODO Match other shadows */
-      transition: 0.1s;
-      cursor: pointer;
-
-      :hover {
-        transform: scale(1.05);
-      }
-    `;
-
     // Should it be className instead?
     return (
       <ChordDiv>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -40 182 271">
+        <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 -40 182 271">
           <g id="hej">
             <g id="wood">
               <rect className="cls-1" y="8.75" width="182" height="214" rx="16" />
@@ -45,7 +83,7 @@ export default class Chord extends React.Component {
             </g>
           </g>
           {this.createChordDots(this.props.chordData)}
-        </svg>
+        </StyledSvg>
       </ChordDiv>
     );
   }

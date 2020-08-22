@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const ChordAreaDiv = styled.div`
   padding: 1rem;
-  background-color: #272727;
+  background-color: ${(props) => props.theme.colors.darkBackground};
   /* grid-template-columns: 1fr; */
   /* height: 100vh; */
   --gutter: 2rem;
