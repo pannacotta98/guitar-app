@@ -60,7 +60,8 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;;
+  color: ${(props) => props.theme.colors.contrastingText};
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: ${(props) => props.theme.colors.darkBackground};

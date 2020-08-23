@@ -2,6 +2,8 @@ import React from 'react';
 import ChordArea from './ChordArea';
 import ChordSelection from './ChordSelection';
 import NavBar from './NavBar';
+import BigFretBoard from './BigFretBoard';
+import ChordNamer from './ChordNamer';
 
 function App() {
   return (
@@ -21,8 +23,9 @@ function App() {
         </a>
       </header> */}
       <NavBar />
-      <ChordSelection />
-      <ChordArea />
+      {/* <ChordSelection /> */}
+      {/* <ChordArea /> */}
+      <ChordNamer />
     </div>
   );
 }
