@@ -90,7 +90,9 @@ const StyledSvg = styled.svg`
 
 const stringPadding = 20;
 const stringSpacing = 35;
-const stringPositions = _.range(6).map((num) => stringPadding + num * stringSpacing);
+const stringPositions = _.range(6)
+  .reverse()
+  .map((num) => stringPadding + num * stringSpacing);
 
 const fretSpacing = 65;
 const nutPosition = 20;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BigFretBoard from './BigFretBoard';
 import styled from 'styled-components';
 import _ from 'lodash';
+import ChordGenerator from './../logic/ChordGenerator';
 
 const VerticallyCentered = styled.div`
   /* transform: translate(0%, 50%); */
@@ -22,31 +23,22 @@ export default class ChordNamer extends Component {
   constructor(props) {
     super(props);
 
-    const tempNotes = [
-      _.fill(Array(13), false),
-      _.fill(Array(13), false),
-      _.fill(Array(13), false),
-      _.fill(Array(13), false),
-      _.fill(Array(13), false),
-      _.fill(Array(13), false),
-    ];
-    tempNotes[0][0] = tempNotes[1][0] = tempNotes[2][1] = true;
+    this.namer = new ChordGenerator(); // TODO Name makes no sense
 
     this.state = {
-      notes: tempNotes,
+      fingering: _.fill(Array(6), null),
     };
   }
 
   toggleNote = (string, fret) => {
-    const tempNotes = this.state.notes;
-    if (tempNotes[string][fret]) {
-      // TODO Set open string or something
+    const tempFingering = this.state.fingering;
+    if (tempFingering[string] === fret) {
+      tempFingering[string] = null;
     } else {
-      _.fill(tempNotes[string], false); // Only one note per string in chords
+      tempFingering[string] = fret; // Only one note per string in chords
     }
-    tempNotes[string][fret] = !tempNotes[string][fret];
 
-    this.setState({ notes: tempNotes });
+    this.setState({ fingering: tempFingering });
   };
 
   render() {
@@ -54,9 +46,18 @@ export default class ChordNamer extends Component {
       <Container>
         <VerticallyCentered>
           <SmallText>Chord Namer</SmallText>
-          <h1>Input your notes below ↓</h1>
+          <h1>
+            {_.isEqual(this.state.fingering, [null, null, null, null, null, null])
+              ? 'Input your notes below ↓'
+              : this.namer.nameChord(this.state.fingering)[0]}
+          </h1>
           <SmallText>Also known as:</SmallText>
-          <BigFretBoard notes={this.state.notes} toggleNote={this.toggleNote} />
+          <BigFretBoard
+            notes={this.state.fingering.map((fret) =>
+              _.fill(Array(13), false).map((x, index) => index === fret)
+            )}
+            toggleNote={this.toggleNote}
+          />
         </VerticallyCentered>
       </Container>
     );
