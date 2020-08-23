@@ -4,6 +4,7 @@ import ChordSelection from './ChordSelection';
 import NavBar from './NavBar';
 import BigFretBoard from './BigFretBoard';
 import ChordNamer from './ChordNamer';
+import TestComponent from './TestComponent';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       {/* <ChordSelection /> */}
       {/* <ChordArea /> */}
       <ChordNamer />
+      <TestComponent />
     </div>
   );
 }
