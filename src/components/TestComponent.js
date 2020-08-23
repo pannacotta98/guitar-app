@@ -1,5 +1,5 @@
 import React from 'react';
-import ChordGenerator from './logic/ChordGenerator';
+import ChordGenerator from '../logic/ChordGenerator';
 // import ChordIntervals from './logic/ChordIntervals';
 
 export default class TestComponent extends React.Component {
@@ -22,10 +22,18 @@ export default class TestComponent extends React.Component {
   }
 
   render() {
-    return <>
-      <h1>Em<sup>add9</sup>/B</h1>
-      <h1>A<sup>6</sup>sus<sup>4</sup></h1>
-      <h1>G#<sup>maj13</sup>/F</h1>
-    </>;
+    return (
+      <>
+        <h1>
+          Em<sup>add9</sup>/B
+        </h1>
+        <h1>
+          A<sup>6</sup>sus<sup>4</sup>
+        </h1>
+        <h1>
+          G#<sup>maj13</sup>/F
+        </h1>
+      </>
+    );
   }
 }

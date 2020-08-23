@@ -27,7 +27,7 @@ function App() {
       {/* <ChordSelection /> */}
       {/* <ChordArea /> */}
       <ChordNamer />
-      <TestComponent />
+      {/* <TestComponent /> */}
     </div>
   );
 }
