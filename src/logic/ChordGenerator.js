@@ -1,14 +1,9 @@
-// TODO Make universal?
-const ChordIntervals = require('./ChordIntervals.js');
-
-
-// I givE uP PROBAblY
-// or maybe not
+import ChordIntervals from './ChordIntervals';
 // here is some stuff that could be useful: 
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
 // TODO Limit to two or more notes?
-class ChordGenerator {
+export default class ChordGenerator {
 
   constructor() {
     // this.notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'];
@@ -63,23 +58,60 @@ class ChordGenerator {
       }
     }
 
-    const rootName = this.toNoteName(Math.min(...notesInChord));
+    const root = Math.min(...notesInChord);
+    const rootName = this.toNoteName(root);
 
     // Normalize notes to one octave and remove duplicates
-    const notesInChordNormalized = [...new Set(notesInChord.map(note => this.normalizeNote(note)))];
-    notesInChordNormalized.sort((a, b) => a - b);
+    const notesInChordNormalized = notesInChord.map(note => this.normalizeNote(note));
+    const notesInChordNormalizedNoDuplicates = [...new Set(notesInChordNormalized)];
+    notesInChordNormalizedNoDuplicates.sort((a, b) => a - b);
 
-    const result = [];    
-    for (const buildNote of notesInChordNormalized) {
-      const quality = this.getChordQualityFromIntervals(
-        this.getIntervals(notesInChordNormalized, this.normalizeNote(buildNote))
-      );
-      if (rootName === this.toNoteName(buildNote)) {
-        result.push(this.toNoteName(buildNote) + quality);
-      } else {
-        result.push(this.toNoteName(buildNote) + quality + '/' + rootName);
-      }
+    // Find frequency of each note
+    var counts = {};
+    for (let i = 0; i < notesInChordNormalized.length; i++) {
+      const num = notesInChordNormalized[i];
+      counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
+    // console.log('%cChordGenerator.js line:75 notesInChordNormalized', 'color: #26bfa5;', notesInChordNormalized);
+    // console.log('%cChordGenerator.js line:75 counts', 'color: #26bfa5;', counts);
+
+    const result = [];
+
+    // Find chords rooted from rootName
+    result.push(rootName + this.getChordQualityFromIntervals(this.getIntervals(notesInChordNormalizedNoDuplicates, this.normalizeNote(root))));
+
+    // Find slash chords
+    for (const buildNote of notesInChordNormalizedNoDuplicates) {
+      if (this.toNoteName(buildNote) === rootName) {
+        continue;
+      }
+
+      result.push(
+        this.toNoteName(buildNote) +
+          this.getChordQualityFromIntervals(
+            this.getIntervals(
+              notesInChordNormalizedNoDuplicates.filter(
+                (note) => !(note === this.normalizeNote(root) && counts[note] === 1)
+              ),
+              buildNote
+            )
+          ) +
+          '/' +
+          rootName
+      );
+    }
+
+    // const result = [];
+    // for (const buildNote of notesInChordNormalized) {
+    //   const quality = this.getChordQualityFromIntervals(
+    //     this.getIntervals(notesInChordNormalized, this.normalizeNote(buildNote))
+    //   );
+    //   if (rootName === this.toNoteName(buildNote)) {
+    //     result.push(this.toNoteName(buildNote) + quality);
+    //   } else {
+    //     result.push(this.toNoteName(buildNote) + quality + '/' + rootName);
+    //   }
+    // }
     // TODO Make it so bass note doesnt have to be part of chord quality
     return result;
   }
@@ -90,14 +122,13 @@ class ChordGenerator {
    */
   getChordQualityFromIntervals(intervals) {
     // TODO order switcharoo
-    // maybe do some tree thing here
     const value = ChordIntervals.getInstance().chordLookUp.get(intervals.join('|'));
 
     if (value !== undefined) {
       // return value['Full Name'];
-      return value['Abbreviations'].split(' ')[0];
+      return value.abbr.split(' ')[0];
     } else  {
-      console.warn('Could not name chord with intervals:', intervals, intervals.join('|'));
+      console.warn('Could not name chord with intervals:', intervals.join('|'));
       return '??';
     }
   }
@@ -146,31 +177,29 @@ class ChordGenerator {
 }
 
 
-// TODO Move or something
-function arrayEquals(a, b) {
-  return Array.isArray(a) &&
-    Array.isArray(b) &&
-    a.length === b.length &&
-    a.every((val, index) => val === b[index]);
-}
+// // TODO Move or something
+// function arrayEquals(a, b) {
+//   return Array.isArray(a) &&
+//     Array.isArray(b) &&
+//     a.length === b.length &&
+//     a.every((val, index) => val === b[index]);
+// }
 
-// FOR TESTTING:
-var g = new ChordGenerator();
-// var hej = g.getAllChordsInFretRange(5, 8);
-// console.log('Chords generated:', hej.length);
+// // FOR TESTTING:
+// var g = new ChordGenerator();
+// // var hej = g.getAllChordsInFretRange(5, 8);
+// // console.log('Chords generated:', hej.length);
 
-if (true) {
-  console.log('should be E major:     ', g.nameChord([0, 2, 2, 1, 0, 0]));
-  // console.log('should be G major:     ', g.nameChord([3, 2, 0, 0, 0, 3]));
-  console.log('should be E minor:     ', g.nameChord([0, 2, 2, 0, 0, 0]));
-  console.log('should be E minor7:    ', g.nameChord([0, 2, 2, 0, 3, 0]));
-  console.log('should be F minoradd9: ', g.nameChord([1, 3, 5, 1, 1, 1]));
-  // console.log('should be D major:     ', g.nameChord([null, null, 0, 2, 3, 2]));
-  console.log('should be D minor7:    ', g.nameChord([null, null, 0, 2, 1, 1]));
-  console.log('should be B sus2:      ', g.nameChord([null, 2, 4, 4, 2, 2]));
-  console.log('should be F lydian(?): ', g.nameChord([1, 3, 3, 2, 0, 0]));
-  console.log('should be G 11:        ', g.nameChord([null, 10, 10, 10, 10, 10]));
-  console.log('should be D / F#:      ', g.nameChord([2, 0, 0, 2, 3, 2]));
-}
-
-//:::::::::::::::::::
+// if (true) {
+//   console.log('should be E major:     ', g.nameChord([0, 2, 2, 1, 0, 0]));
+//   // console.log('should be G major:     ', g.nameChord([3, 2, 0, 0, 0, 3]));
+//   console.log('should be E minor:     ', g.nameChord([0, 2, 2, 0, 0, 0]));
+//   console.log('should be E minor7:    ', g.nameChord([0, 2, 2, 0, 3, 0]));
+//   console.log('should be F minoradd9: ', g.nameChord([1, 3, 5, 1, 1, 1]));
+//   // console.log('should be D major:     ', g.nameChord([null, null, 0, 2, 3, 2]));
+//   console.log('should be D minor7:    ', g.nameChord([null, null, 0, 2, 1, 1]));
+//   console.log('should be B sus2:      ', g.nameChord([null, 2, 4, 4, 2, 2]));
+//   console.log('should be F lydian(?): ', g.nameChord([1, 3, 3, 2, 0, 0]));
+//   console.log('should be G 11:        ', g.nameChord([null, 10, 10, 10, 10, 10]));
+//   console.log('should be D / F#:      ', g.nameChord([2, 0, 0, 2, 3, 2]));
+// }
