@@ -14,6 +14,9 @@ export default {
   },
   shadows: {
     main: '5px 5px 13px 0px rgba(0, 0, 0, 0.2)',
-    svg: '5px 5px 13px 0px rgba(0, 0, 0, 0.2)',
+    svg: '5px 5px 13px rgba(0, 0, 0, 0.2)',
+  },
+  breakpoints: {
+    largePhone: '600px',
   },
 };

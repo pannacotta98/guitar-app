@@ -2,9 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
 
+const Container = styled.div`
+  /* background-color: red; */
+  @media (max-width: ${(props) => props.theme.breakpoints.largePhone}) {
+    overflow-x: scroll;
+  }
+`;
+
 // TODO dubellkolla om man faktiskt -kan- ska göra såhär hehe...
 const StyledSvg = styled.svg`
-  width: 100%;
+  /* width: 100%;
+  min-width: 300px; */
+  @media (max-width: ${(props) => props.theme.breakpoints.largePhone}) {
+    height: 250px;
+  }
   
   &:hover {
     .note {
@@ -28,25 +39,12 @@ const StyledSvg = styled.svg`
     fill: ${(props) => props.theme.colors.mainAccent};
     opacity: 0;
     transition: 0.2s;
-    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+
     /* filter: drop-shadow(${(props) => props.theme.shadows.svg}); */
     /* filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4)); */
 
-    &:hover {
-      opacity: 1;
-      stroke: ${(props) => props.theme.colors.mainAccent};
-      stroke-width: 5px;
-    }
-
-    &:active {
-      stroke-width: 1px;
-      /* transform-origin: center; */
-      /* transform: scale(1.2); */
-    }
-  }
-
-  .activeNote {
-    opacity: 1;
   }
 
   .board {
@@ -86,12 +84,55 @@ const StyledSvg = styled.svg`
     opacity: 0.5;
     transition: 0.3s;
   }
+
+  .noteName {
+    fill: ${(props) => props.theme.colors.contrastingText};
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.1s;
+  }
+
+  .noteGroup {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+
+      .noteName {
+        opacity: 1;
+      }
+      .note {
+        opacity: 1;
+        stroke: ${(props) => props.theme.colors.mainAccent};
+        stroke-width: 5px;
+      }
+    }
+
+    :active {
+      .note {
+        stroke-width: 1px;
+        /* transform-origin: center; */
+        /* transform: scale(1.2); */
+      }
+    }
+
+  }
+
+  .activeNoteGroup {
+    .note {
+      opacity: 1;
+    }
+    .noteName {
+      opacity: 1;
+    }
+  }
 `;
 
 const stringPadding = 20;
 const stringSpacing = 35;
 const stringPositions = _.range(6)
-  .reverse()
+  .reverse() // Voicings are in the form [lowest string, ..., highest string]
   .map((num) => stringPadding + num * stringSpacing);
 
 const fretSpacing = 65;
@@ -105,7 +146,7 @@ const markerSize = 14;
 // Which notes are active is sent in as prop: notes as an array of strings arrays of frets nested
 export default function BigFretBoard(props) {
   return (
-    <div>
+    <Container>
       {/* TODO fixa viewBox */}
       <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="-30 0 1000 250">
         <rect className="board" x="0" y="0" width={size.width} height={size.height} rx="16" />
@@ -179,18 +220,43 @@ export default function BigFretBoard(props) {
             <line className="string" x1="0" y1={yPos} x2={size.width} y2={yPos} />
 
             {fretPositions.map((xPos, fretIndex) => (
-              <circle
-                className={props.notes[stringIndex][fretIndex] ? 'note activeNote' : 'note'}
-                cx={xPos - fretSpacing / 2}
-                cy={yPos}
-                r="16"
+              <g
+                className={
+                  props.activeNotes[stringIndex][fretIndex]
+                    ? 'noteGroup activeNoteGroup'
+                    : 'noteGroup'
+                }
                 key={fretIndex}
                 onClick={() => props.toggleNote(stringIndex, fretIndex)}
-              />
+              >
+                <rect
+                  opacity="0"
+                  x={xPos - fretSpacing}
+                  y={yPos - stringSpacing / 2}
+                  width={fretSpacing}
+                  height={stringSpacing}
+                />
+                <circle
+                  className="note"
+                  cx={xPos - fretSpacing / 2}
+                  cy={yPos}
+                  r="16"
+                  key={fretIndex}
+                />
+                <text
+                  className="noteName"
+                  x={xPos - fretSpacing / 2}
+                  y={yPos}
+                  textAnchor="middle"
+                  alignmentBaseline="middle"
+                >
+                  {props.notes[stringIndex][fretIndex]}
+                </text>
+              </g>
             ))}
           </React.Fragment>
         ))}
       </StyledSvg>
-    </div>
+    </Container>
   );
 }

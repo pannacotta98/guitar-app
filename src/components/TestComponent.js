@@ -1,6 +1,7 @@
 import React from 'react';
 import ChordGenerator from '../logic/ChordGenerator';
 // import ChordIntervals from './logic/ChordIntervals';
+import { CHORDS_SRC } from '../logic/musicalData';
 
 export default class TestComponent extends React.Component {
   componentDidMount() {
@@ -24,7 +25,21 @@ export default class TestComponent extends React.Component {
   render() {
     return (
       <>
-        <h1>
+        <h1>All known chords</h1>
+        {/* TODO */}
+        {CHORDS_SRC.map((chord, index) => (
+          <h3
+            key={index}
+            dangerouslySetInnerHTML={{
+              __html:
+                chord.abbr.map((q) => 'A' + q).join(' | ') +
+                '<span style="color: black;"> - ' +
+                chord.fullName +
+                '</span>',
+            }}
+          />
+        ))}
+        {/* <h1>
           Em<sup>add9</sup>/B
         </h1>
         <h1>
@@ -32,7 +47,7 @@ export default class TestComponent extends React.Component {
         </h1>
         <h1>
           G#<sup>maj13</sup>/F
-        </h1>
+        </h1> */}
       </>
     );
   }

@@ -1,18 +1,20 @@
 import ChordIntervals from './ChordIntervals';
-// here is some stuff that could be useful: 
+// here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
 // TODO Limit to two or more notes?
 export default class ChordGenerator {
-
   constructor() {
     // this.notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'];
     this.notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
 
     // E2–A2–D3–G3–B3–E4 <-- scientific pitch notation
-    this.tuning = 'E2 A2 D3 G3 B3 E4'.split(' ').map(note => this.toNoteNumber(note));
+    this.tuning = 'E2 A2 D3 G3 B3 E4'.split(' ').map((note) => this.toNoteNumber(note));
     console.log('tuning in numbers:', this.tuning);
-    console.log('tuning:', this.tuning.map((noteNumber) => this.toNoteNameWithOctave(noteNumber)));
+    console.log(
+      'tuning:',
+      this.tuning.map((noteNumber) => this.toNoteNameWithOctave(noteNumber))
+    );
   }
 
   getAllChordsInFretRange(low, high) {
@@ -21,7 +23,8 @@ export default class ChordGenerator {
     // The posible fret positions
     // TODO Make muted an option and handle low=0
     const frets = [0]; // Strings can always be left open
-    for (let i = low; i < high; ++i) { /////////////////////////// TODO decide on if high is included or smth
+    for (let i = low; i < high; ++i) {
+      /////////////////////////// TODO decide on if high is included or smth
       frets.push(i);
     }
     frets.push(null); // Strings can be muted
@@ -38,7 +41,7 @@ export default class ChordGenerator {
                 // console.log(fingering, this.nameChord(fingering));
                 result.push({
                   name: this.nameChord(fingering),
-                  fingering: fingering
+                  fingering: fingering,
                 });
               }
             }
@@ -47,13 +50,14 @@ export default class ChordGenerator {
       }
     }
 
-    return result
+    return result;
   }
 
   nameChord(fingering) {
     const notesInChord = [];
     for (let i = 0; i < fingering.length; ++i) {
-      if (fingering[i] !== null) { // if string is not muted
+      if (fingering[i] !== null) {
+        // if string is not muted
         notesInChord.push(this.tuning[i] + fingering[i]);
       }
     }
@@ -62,7 +66,7 @@ export default class ChordGenerator {
     const rootName = this.toNoteName(root);
 
     // Normalize notes to one octave and remove duplicates
-    const notesInChordNormalized = notesInChord.map(note => this.normalizeNote(note));
+    const notesInChordNormalized = notesInChord.map((note) => this.normalizeNote(note));
     const notesInChordNormalizedNoDuplicates = [...new Set(notesInChordNormalized)];
     notesInChordNormalizedNoDuplicates.sort((a, b) => a - b);
 
@@ -78,7 +82,12 @@ export default class ChordGenerator {
     const result = [];
 
     // Find chords rooted from rootName
-    result.push(rootName + this.getChordQualityFromIntervals(this.getIntervals(notesInChordNormalizedNoDuplicates, this.normalizeNote(root))));
+    result.push(
+      rootName +
+        this.getChordQualityFromIntervals(
+          this.getIntervals(notesInChordNormalizedNoDuplicates, this.normalizeNote(root))
+        )
+    );
 
     // Find slash chords
     for (const buildNote of notesInChordNormalizedNoDuplicates) {
@@ -115,10 +124,10 @@ export default class ChordGenerator {
     // TODO Make it so bass note doesnt have to be part of chord quality
     return result;
   }
-  
+
   /**
-   * 
-   * @param {??} intervals A list of the intervals between each note 
+   *
+   * @param {??} intervals A list of the intervals between each note
    */
   getChordQualityFromIntervals(intervals) {
     // TODO order switcharoo
@@ -126,8 +135,8 @@ export default class ChordGenerator {
 
     if (value !== undefined) {
       // return value['Full Name'];
-      return value.abbr.split(' ')[0];
-    } else  {
+      return value.abbr[0];
+    } else {
       console.warn('Could not name chord with intervals:', intervals.join('|'));
       return '??';
     }
@@ -136,7 +145,7 @@ export default class ChordGenerator {
   // Intervals compared to root note
   getIntervals(notes, root) {
     if (notes.length === 0) {
-      console.log('ehm')
+      console.log('ehm');
       return [];
     }
     // console.log('notes:', notes)
@@ -157,12 +166,16 @@ export default class ChordGenerator {
     // console.log('| root:', root);
     // console.log('| notes:', notes, '-', notes.map(n => this.toNoteNameWithOctave(n)));
     // console.log('| intervals:', intervals);
-    return intervals
+    return intervals;
   }
 
-  normalizeNote(noteNumber) { return noteNumber % this.notes.length; }
+  normalizeNote(noteNumber) {
+    return noteNumber % this.notes.length;
+  }
 
-  toNoteName(number) { return this.notes[number % this.notes.length]; }
+  toNoteName(number) {
+    return this.notes[number % this.notes.length];
+  }
 
   toNoteNameWithOctave(number) {
     return `${this.notes[number % this.notes.length]}${Math.trunc(number / this.notes.length)}`;
@@ -173,9 +186,7 @@ export default class ChordGenerator {
     const octave = parseInt(noteName.slice(-1));
     return octave * this.notes.length + this.notes.indexOf(name);
   }
-
 }
-
 
 // // TODO Move or something
 // function arrayEquals(a, b) {

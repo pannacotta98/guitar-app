@@ -59,6 +59,11 @@ html {
   box-sizing: inherit;
 }
 
+sup { 
+  vertical-align: top;
+  font-size: 0.7em;
+}
+
 body {
   color: ${(props) => props.theme.colors.contrastingText};
   font-family: 'Montserrat', sans-serif;
