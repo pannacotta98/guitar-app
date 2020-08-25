@@ -64,6 +64,13 @@ const CHORDS_SRC = [
     abbr: ['maj7♭6', 'ma7♭6', 'M7♭6'],
     scale: 'Harmonic Maj',
   },
+  // -- major add chords
+  {
+    notes: '1 3 (5) 9',
+    fullName: 'major add 9', // Detta känns väl inte helt huuundra
+    abbr: ['<sup>add9</sup>'],
+    scale: '???',
+  },
   // DOMINANT/SEVENTH
   // -- normal
   {
@@ -121,6 +128,12 @@ const CHORDS_SRC = [
     fullName: 'suspended 2nd',
     abbr: ['sus<sup>2</sup>'],
     scale: 'Usually mixolydian',
+  },
+  {
+    notes: '1 2 4 (5) 6', // double check
+    fullName: '6 suspended 2nd suspended 4th',
+    abbr: ['<sup>6</sup>sus<sup>2</sup>sus<sup>4</sup>'],
+    scale: '???',
   },
   {
     notes: '1 2 4 (5)', // double check

@@ -1,4 +1,5 @@
 import ChordIntervals from './ChordIntervals';
+import { INTERVAL_NUMBERS } from './musicalData';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
@@ -137,8 +138,21 @@ export default class ChordGenerator {
       // return value['Full Name'];
       return value.abbr[0];
     } else {
-      console.warn('Could not name chord with intervals:', intervals.join('|'));
-      return '??';
+      // console.warn(
+      //   'Could not name chord with intervals:',
+      //   intervals,
+      //   intervals
+      //     .map((i) => {
+      //       for (const entry of INTERVAL_NUMBERS) {
+      //         if (entry[1] === i) {
+      //           return entry[0];
+      //         }
+      //       }
+      //       return '?';
+      //     })
+      //     .join('|')
+      // );
+      // return '??';
     }
   }
 
