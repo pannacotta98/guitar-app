@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import _ from 'lodash';
 
 const Container = styled.div`
-  /* background-color: red; */
   @media (max-width: ${(props) => props.theme.breakpoints.largePhone}) {
     overflow-x: scroll;
   }
@@ -11,40 +10,23 @@ const Container = styled.div`
 
 // TODO dubellkolla om man faktiskt -kan- ska göra såhär hehe...
 const StyledSvg = styled.svg`
-  /* width: 100%;
-  min-width: 300px; */
   @media (max-width: ${(props) => props.theme.breakpoints.largePhone}) {
     height: 250px;
   }
-  
+
   &:hover {
-    .note {
-      opacity: 0.15;
-    }
-    
-    .activeNote {
-      opacity: 1;
-    }
-
-    .marker {
-      opacity: 0.5;
-    }
-
-    .fretNumbers {
-      opacity: 1;
-    }
+    /* .note { opacity: 0.15; } */
+    .activeNote { opacity: 1; }
+    .marker { opacity: 0.5; }
+    .fretNumbers { opacity: 1; }
   }
 
   .note {
     fill: ${(props) => props.theme.colors.mainAccent};
-    opacity: 0;
     transition: 0.2s;
-
-    -webkit-tap-highlight-color: transparent;
-
+    -webkit-tap-highlight-color: transparent; /* Remove ugly touch box */
     /* filter: drop-shadow(${(props) => props.theme.shadows.svg}); */
     /* filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4)); */
-
   }
 
   .board {
@@ -59,18 +41,15 @@ const StyledSvg = styled.svg`
 
   .fret {
     stroke: ${(props) => props.theme.colors.fret};
-    /* stroke-linecap: round; */
     stroke-width: 5px;
   }
 
   .nut {
     stroke: ${(props) => props.theme.colors.nut};
-    /* stroke-linecap: round; */
     stroke-width: 5px;
   }
 
   .marker {
-    /* fill: ${(props) => props.theme.colors.fretMarkers}; */
     fill: none;
     stroke: ${(props) => props.theme.colors.fretMarkers};
     stroke-width: 3px;
@@ -88,44 +67,32 @@ const StyledSvg = styled.svg`
   .noteName {
     fill: ${(props) => props.theme.colors.contrastingText};
     font-weight: 600;
-    opacity: 0;
     pointer-events: none;
     transition: 0.1s;
   }
 
   .noteGroup {
+    opacity: 0;
     cursor: pointer;
 
     &:hover {
-      opacity: 1;
+      opacity: 0.7;
 
-      .noteName {
-        opacity: 1;
-      }
       .note {
-        opacity: 1;
         stroke: ${(props) => props.theme.colors.mainAccent};
         stroke-width: 5px;
       }
     }
 
-    :active {
-      .note {
-        stroke-width: 1px;
-        /* transform-origin: center; */
-        /* transform: scale(1.2); */
-      }
+    &:active {
+      opacity: 1;
+      .note { stroke-width: 1px; }
     }
-
   }
 
-  .activeNoteGroup {
-    .note {
-      opacity: 1;
-    }
-    .noteName {
-      opacity: 1;
-    }
+  .activeNoteGroup { 
+    opacity: 1;
+    &:hover { opacity:1; } 
   }
 `;
 
@@ -246,7 +213,7 @@ export default function BigFretBoard(props) {
                 <text
                   className="noteName"
                   x={xPos - fretSpacing / 2}
-                  y={yPos}
+                  y={yPos + 1 /* seems to look more center */}
                   textAnchor="middle"
                   alignmentBaseline="middle"
                 >

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BigFretBoard from './BigFretBoard';
 import styled from 'styled-components';
 import _ from 'lodash';
+import IntervalUtilities from './../logic/IntervalUtilities';
 import ChordGenerator from './../logic/ChordGenerator';
 
 const VerticallyCentered = styled.div`
@@ -35,7 +36,9 @@ export default class ChordNamer extends Component {
 
     this.namer = new ChordGenerator(); // TODO Name makes no sense
     const notes = this.namer.tuning.map((string) =>
-      _.fill(Array(13), string).map((openNote, fret) => this.namer.toNoteName(openNote + fret))
+      _.fill(Array(13), string).map((openNote, fret) =>
+        IntervalUtilities.toNoteName(openNote + fret)
+      )
     );
 
     console.log('notes:', notes);
