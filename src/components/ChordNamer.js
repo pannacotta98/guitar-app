@@ -78,7 +78,9 @@ export default class ChordNamer extends Component {
             dangerouslySetInnerHTML={{
               __html: _.isEqual(this.state.fingering, [null, null, null, null, null, null])
                 ? 'Input your notes below ↓'
-                : chordNames.shift(),
+                : chordNames.length > 0
+                ? chordNames.shift()
+                : 'I don’t know that one... :(',
             }}
           />
 

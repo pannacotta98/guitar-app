@@ -27,18 +27,20 @@ export default class TestComponent extends React.Component {
       <>
         <h1>All known chords</h1>
         {/* TODO */}
-        {CHORDS_SRC.map((chord, index) => (
-          <h3
-            key={index}
-            dangerouslySetInnerHTML={{
-              __html:
-                chord.abbr.map((q) => 'A' + q).join(' | ') +
-                '<span style="color: black;"> - ' +
-                chord.fullName +
-                '</span>',
-            }}
-          />
-        ))}
+        {[...CHORDS_SRC]
+          .sort((a, b) => a.weight - b.weight)
+          .map((chord, index) => (
+            <h3
+              key={index}
+              dangerouslySetInnerHTML={{
+                __html:
+                  chord.abbr.map((q) => 'A' + q).join(' | ') +
+                  '<span style="color: black;"> - ' +
+                  chord.fullName +
+                  '</span>',
+              }}
+            />
+          ))}
         {/* <h1>
           Em<sup>add9</sup>/B
         </h1>

@@ -60,8 +60,8 @@ export default class ChordGenerator {
   nameChord(fingering) {
     const notesInChord = [];
     for (let i = 0; i < fingering.length; ++i) {
+      // if string is not muted
       if (fingering[i] !== null) {
-        // if string is not muted
         notesInChord.push(this.tuning[i] + fingering[i]);
       }
     }
@@ -76,63 +76,59 @@ export default class ChordGenerator {
     const notesInChordNormalizedNoDuplicates = [...new Set(notesInChordNormalized)];
     notesInChordNormalizedNoDuplicates.sort((a, b) => a - b);
 
-    // Find frequency of each note
+    // Find frequency/count of each note
     var counts = {};
     for (let i = 0; i < notesInChordNormalized.length; i++) {
       const num = notesInChordNormalized[i];
       counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
-    // console.log('%cChordGenerator.js line:75 notesInChordNormalized', 'color: #26bfa5;', notesInChordNormalized);
-    // console.log('%cChordGenerator.js line:75 counts', 'color: #26bfa5;', counts);
 
     const result = [];
 
-    // Find chords rooted from rootName
-    result.push(
-      rootName +
-        this.getChordQualityFromIntervals(
-          IntervalUtilities.getIntervals(
-            notesInChordNormalizedNoDuplicates,
-            IntervalUtilities.normalizeNote(root)
-          )
-        )
-    );
-
-    // Find slash chords
     for (const buildNote of notesInChordNormalizedNoDuplicates) {
-      if (IntervalUtilities.toNoteName(buildNote) === rootName) {
-        continue;
+      const buildNoteIsRoot = IntervalUtilities.toNoteName(buildNote) === rootName;
+
+      let includedNotes = notesInChordNormalizedNoDuplicates;
+      // If building from another note than the root, the root can be excluded
+      // from the chord quality if it is not included in the rest of the voicing
+      if (!buildNoteIsRoot) {
+        includedNotes = notesInChordNormalizedNoDuplicates.filter(
+          (note) => !(note === IntervalUtilities.normalizeNote(root) && counts[note] === 1)
+        );
       }
 
-      result.push(
-        IntervalUtilities.toNoteName(buildNote) +
-          this.getChordQualityFromIntervals(
-            IntervalUtilities.getIntervals(
-              notesInChordNormalizedNoDuplicates.filter(
-                (note) => !(note === IntervalUtilities.normalizeNote(root) && counts[note] === 1)
-              ),
-              buildNote
-            )
-          ) +
-          '/' +
-          rootName
+      const chord = this.getChordFromIntervals(
+        IntervalUtilities.getIntervals(includedNotes, buildNote)
       );
+
+      if (chord !== null) {
+        result.push({
+          chordTypeInfo: chord,
+          root: IntervalUtilities.toNoteName(buildNote),
+          bass: buildNoteIsRoot ? null : rootName,
+          // Non-slash chords should be preffered if similar complexity
+          finalWeight: chord.weight + (buildNoteIsRoot ? 0 : 6),
+        });
+      }
     }
 
-    return result;
+    result.sort((a, b) => a.finalWeight - b.finalWeight);
+
+    return result.map(
+      (obj) => `${obj.root}${obj.chordTypeInfo.abbr[0]}${obj.bass !== null ? `/${obj.bass}` : ''}`
+    );
   }
 
   /**
    *
-   * @param {??} intervals A list of the intervals between root and each note
+   * @param {number[]} intervals A list of the intervals between the root and each note
+   * ex: [0, 2, 4, 7] where 0 is the root
    */
-  getChordQualityFromIntervals(intervals) {
-    // TODO order switcharoo
+  getChordFromIntervals(intervals) {
     const value = ChordIntervals.getInstance().chordLookUp.get(intervals.join('|'));
 
     if (value !== undefined) {
-      // return value['Full Name'];
-      return value.abbr[0];
+      return value;
     } else {
       console.warn(
         'Could not name chord with intervals:',
@@ -148,7 +144,7 @@ export default class ChordGenerator {
           })
           .join('|')
       );
-      return '??';
+      return null;
     }
   }
 }
