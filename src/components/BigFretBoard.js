@@ -3,61 +3,66 @@ import styled from 'styled-components';
 import _ from 'lodash';
 
 const Container = styled.div`
-  @media (max-width: ${(props) => props.theme.breakpoints.largePhone}) {
+  @media (max-width: var(--large-phone)) {
     overflow-x: scroll;
   }
 `;
 
 // TODO dubellkolla om man faktiskt -kan- ska göra såhär hehe...
 const StyledSvg = styled.svg`
-  @media (max-width: ${(props) => props.theme.breakpoints.largePhone}) {
+  @media (max-width: var(--large-phone)) {
     height: 250px;
   }
 
   &:hover {
     /* .note { opacity: 0.15; } */
-    .activeNote { opacity: 1; }
-    .marker { opacity: 0.5; }
-    .fretNumbers { opacity: 1; }
+    .activeNote {
+      opacity: 1;
+    }
+    .marker {
+      opacity: 0.5;
+    }
+    .fretNumbers {
+      opacity: 1;
+    }
   }
 
   .note {
-    fill: ${(props) => props.theme.colors.mainAccent};
+    fill: var(--main-accent);
     transition: 0.2s;
     -webkit-tap-highlight-color: transparent; /* Remove ugly touch box */
-    /* filter: drop-shadow(${(props) => props.theme.shadows.svg}); */
     /* filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4)); */
   }
 
   .board {
-    fill: ${(props) => props.theme.colors.fretboard};
+    fill: var(--fretboard-color);
   }
 
   .string {
-    stroke: ${(props) => props.theme.colors.string};
+    stroke: var(--string-color);
     stroke-linecap: round;
     stroke-width: 5px;
   }
 
   .fret {
-    stroke: ${(props) => props.theme.colors.fret};
+    stroke: var(--fret-color);
     stroke-width: 5px;
   }
 
   .nut {
-    stroke: ${(props) => props.theme.colors.nut};
+    stroke: var(--nut-color);
     stroke-width: 5px;
   }
 
   .marker {
     fill: none;
-    stroke: ${(props) => props.theme.colors.fretMarkers};
+    stroke: var(--fret-marker-color);
     stroke-width: 3px;
     transition: 0.3s;
   }
 
   .fretNumbers {
-    fill: ${(props) => props.theme.colors.dimmerText};
+    fill: var(--dimmer-text-color);
     font-weight: 600;
     font-size: 18px;
     opacity: 0.5;
@@ -65,7 +70,7 @@ const StyledSvg = styled.svg`
   }
 
   .noteName {
-    fill: ${(props) => props.theme.colors.contrastingText};
+    fill: var(--contrasting-text-color);
     font-weight: 600;
     pointer-events: none;
     transition: 0.1s;
@@ -79,20 +84,24 @@ const StyledSvg = styled.svg`
       opacity: 0.7;
 
       .note {
-        stroke: ${(props) => props.theme.colors.mainAccent};
+        stroke: var(--main-accent);
         stroke-width: 5px;
       }
     }
 
     &:active {
       opacity: 1;
-      .note { stroke-width: 1px; }
+      .note {
+        stroke-width: 1px;
+      }
     }
   }
 
-  .activeNoteGroup { 
+  .activeNoteGroup {
     opacity: 1;
-    &:hover { opacity:1; } 
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 

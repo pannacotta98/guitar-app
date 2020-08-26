@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-/* RESET */
+/* ======================== RESET ======================== */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -49,7 +49,29 @@ table {
 	border-collapse: collapse;
   border-spacing: 0;
 }
-/* --- */
+/* ======================================================= */
+
+:root {
+  /* Colors */
+  --main-accent: #5C326B;
+  --dark-background: #272727;
+  --lighter-background: #363636;
+  --button-color: #464646;
+  --contrasting-text-color: #F5F5F5;
+  --dimmer-text-color: #DFDFDF;
+  --fretboard-color: #FFE291;
+  --string-color: #464646;
+  --nut-color: #F5F5F5;
+  --fret-color: #B4B4B4;
+  --fret-markers-color: #B4B4B4;
+
+  /* Shadows */
+  --main-shadow: 5px 5px 13px 0px rgba(0, 0, 0, 0.2);
+  --svg-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);
+
+  /* Breakpoints */
+  --large-phone: 600px;
+}
 
 html {
   box-sizing: border-box;
@@ -65,14 +87,15 @@ sup {
 }
 
 body {
-  color: ${(props) => props.theme.colors.contrastingText};
+  color: var(--dimmer-text-color);
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: ${(props) => props.theme.colors.darkBackground};
+  background-color: var(--dark-background);
 }
 
 h1, h2, h3, h4, h5, h6 {
+  color: var(--contrasting-text-color);
   font-weight: bold;
 }
 

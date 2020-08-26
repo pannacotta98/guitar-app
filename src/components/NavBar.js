@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NavContainer = styled.nav`
-  background-color: ${(props) => props.theme.colors.mainAccent};
-  color: ${(props) => props.theme.colors.contrastingText};
+  background-color: var(--main-accent);
+  color: var(--contrasting-text-color);
   padding: 1.2rem;
-  box-shadow: ${(props) => props.theme.shadows.main};
+  box-shadow: var(--main-shadow);
   position: relative;
   z-index: 10;
 `;

@@ -3,24 +3,24 @@ import styled from 'styled-components';
 
 const ChordNameHeading = styled.h1`
   text-align: center;
-  color: ${(props) => props.theme.colors.contrastingText};
+  color: var(--contrasting-text-color);
   font-size: 3rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 `;
 
 const MainContainer = styled.div`
-  background-color: ${(props) => props.theme.colors.lighterBackground};
+  background-color: var(--lighter-background);
   padding: 2rem 1rem;
-  box-shadow: ${(props) => props.theme.shadows.main};
+  box-shadow: var(--main-shadow);
   position: relative;
 `;
 
 // TODO Use variables for main colors and shadow probably
 const TestButton = styled.button`
-  background-color: ${(props) => props.theme.colors.button};
+  background-color: var(--button-color);
   border: none;
-  color: ${(props) => props.theme.colors.contrastingText};
+  color: var(--contrasting-text-color);
   padding: 1rem 2rem;
   text-align: center;
   text-decoration: none;

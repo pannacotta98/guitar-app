@@ -22,7 +22,7 @@ const SmallText = styled.div`
   text-transform: uppercase;
   font-size: 0.9rem;
   font-weight: 500;
-  color: ${(props) => props.theme.colors.dimmerText};
+  /* color: var(--dimmer-text-color); */
   padding-bottom: 10px;
 `;
 
