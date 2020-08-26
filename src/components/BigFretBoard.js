@@ -3,34 +3,45 @@ import styled from 'styled-components';
 import _ from 'lodash';
 
 const Container = styled.div`
-  @media (max-width: var(--large-phone)) {
+  @media (max-width: 600px) {
+    /* background-color: var(--lighter-background); */
+    /* padding: 1.5rem; */
+    /* box-shadow: inset var(--main-shadow), inset -5px -5px 13px 0px rgba(0, 0, 0, 0.2); */
     overflow-x: scroll;
+    /* background-color: red; */
   }
 `;
 
 // TODO dubellkolla om man faktiskt -kan- ska göra såhär hehe...
 const StyledSvg = styled.svg`
-  @media (max-width: var(--large-phone)) {
+  /* @media (max-width: var(--large-phone)) { */
+  @media (max-width: 600px) {
     height: 250px;
+    .board {
+      fill: red;
+    }
+    /* width: 300px; */
   }
 
-  &:hover {
-    /* .note { opacity: 0.15; } */
-    .activeNote {
-      opacity: 1;
-    }
-    .marker {
-      opacity: 0.5;
-    }
-    .fretNumbers {
-      opacity: 1;
+  @media (hover: hover) {
+    &:hover {
+      /* .note { opacity: 0.15; } */
+      .activeNote {
+        opacity: 1;
+      }
+      .marker {
+        opacity: 0.5;
+      }
+      .fretNumbers {
+        opacity: 1;
+      }
     }
   }
 
   .note {
     fill: var(--main-accent);
     transition: 0.2s;
-    -webkit-tap-highlight-color: transparent; /* Remove ugly touch box */
+
     /* filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4)); */
   }
 
@@ -79,13 +90,16 @@ const StyledSvg = styled.svg`
   .noteGroup {
     opacity: 0;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Remove ugly touch box */
 
-    &:hover {
-      opacity: 0.7;
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.7;
 
-      .note {
-        stroke: var(--main-accent);
-        stroke-width: 5px;
+        .note {
+          stroke: var(--main-accent);
+          stroke-width: 5px;
+        }
       }
     }
 
@@ -99,8 +113,10 @@ const StyledSvg = styled.svg`
 
   .activeNoteGroup {
     opacity: 1;
-    &:hover {
-      opacity: 1;
+    @media (hover: hover) {
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 `;

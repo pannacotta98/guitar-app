@@ -10,12 +10,24 @@ const VerticallyCentered = styled.div`
 `;
 
 const BigChordName = styled.h1`
-  /* padding: 10px 0; */
-  padding-bottom: 15px;
+  padding: 1rem 0;
+  /* transition: 1s; */
+  /* padding-bottom: 15px; */
 `;
 
 const Container = styled.div`
-  padding: 2rem;
+  /* padding: 2rem; */
+`;
+
+const OuterTextContainer = styled.div`
+  height: 35vh;
+  position: relative;
+`;
+
+const TextContainer = styled.div`
+  padding: 2rem 2rem;
+  position: absolute;
+  bottom: 0;
 `;
 
 const SmallText = styled.div`
@@ -23,7 +35,7 @@ const SmallText = styled.div`
   font-size: 0.9rem;
   font-weight: 500;
   /* color: var(--dimmer-text-color); */
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 `;
 
 const NormalCase = styled.span`
@@ -66,34 +78,38 @@ export default class ChordNamer extends Component {
     return (
       <Container>
         <VerticallyCentered>
-          <SmallText>Chord Namer</SmallText>
-          {/* <BigChordName>
-            {_.isEqual(this.state.fingering, [null, null, null, null, null, null])
-              ? 'Input your notes below ↓'
-              : chordNames.shift()}
-          </BigChordName> */}
+          <OuterTextContainer>
+            <TextContainer>
+              <SmallText>Chord Namer</SmallText>
+              {/* <BigChordName>
+                {_.isEqual(this.state.fingering, [null, null, null, null, null, null])
+                  ? 'Input your notes below ↓'
+                  : chordNames.shift()}
+              </BigChordName> */}
 
-          {/* TODO !!! Do i need to like purify this?? its not user input... */}
-          <BigChordName
-            dangerouslySetInnerHTML={{
-              __html: _.isEqual(this.state.fingering, [null, null, null, null, null, null])
-                ? 'Input your notes below ↓'
-                : chordNames.length > 0
-                ? chordNames.shift()
-                : 'I don’t know that one... :(',
-            }}
-          />
+              {/* TODO !!! Do i need to like purify this?? its not user input... */}
+              <BigChordName
+                dangerouslySetInnerHTML={{
+                  __html: _.isEqual(this.state.fingering, [null, null, null, null, null, null])
+                    ? 'Input your notes below ↓'
+                    : chordNames.length > 0
+                    ? chordNames.shift()
+                    : 'I don’t know that one... :(',
+                }}
+              />
 
-          <SmallText>
-            Also known as:&nbsp;&nbsp;&nbsp;&nbsp;
-            <NormalCase
-              dangerouslySetInnerHTML={{
-                __html: _.isEqual(this.state.fingering, [null, null, null, null, null, null])
-                  ? ''
-                  : chordNames.join('\xa0\xa0\xa0\xa0'),
-              }}
-            />
-          </SmallText>
+              <SmallText>
+                Also known as:&nbsp;&nbsp;&nbsp;&nbsp;
+                <NormalCase
+                  dangerouslySetInnerHTML={{
+                    __html: _.isEqual(this.state.fingering, [null, null, null, null, null, null])
+                      ? ''
+                      : chordNames.join('\xa0\xa0\xa0\xa0'),
+                  }}
+                />
+              </SmallText>
+            </TextContainer>
+          </OuterTextContainer>
           <BigFretBoard
             activeNotes={this.state.fingering.map((fret) =>
               _.fill(Array(13), false).map((x, index) => index === fret)

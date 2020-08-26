@@ -63,13 +63,15 @@ table {
   --string-color: #464646;
   --nut-color: #F5F5F5;
   --fret-color: #B4B4B4;
-  --fret-markers-color: #B4B4B4;
+  --fret-marker-color: #B4B4B4;
 
   /* Shadows */
   --main-shadow: 5px 5px 13px 0px rgba(0, 0, 0, 0.2);
   --svg-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);
 
   /* Breakpoints */
+  /* TODO Turns out css variables dont work
+     in media queries... */
   --large-phone: 600px;
 }
 

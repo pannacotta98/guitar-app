@@ -7,7 +7,7 @@ export default class TestComponent extends React.Component {
   componentDidMount() {
     this.generator = new ChordGenerator();
 
-    if (true) {
+    if (false) {
       console.log('should be E major:     ', this.generator.nameChord([0, 2, 2, 1, 0, 0]));
       // console.log('should be G major:     ', g.nameChord([3, 2, 0, 0, 0, 3]));
       console.log('should be E minor:     ', this.generator.nameChord([0, 2, 2, 0, 0, 0]));
@@ -41,15 +41,6 @@ export default class TestComponent extends React.Component {
               }}
             />
           ))}
-        {/* <h1>
-          Em<sup>add9</sup>/B
-        </h1>
-        <h1>
-          A<sup>6</sup>sus<sup>4</sup>
-        </h1>
-        <h1>
-          G#<sup>maj13</sup>/F
-        </h1> */}
       </>
     );
   }
