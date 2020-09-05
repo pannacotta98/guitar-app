@@ -1,34 +1,29 @@
 import React from 'react';
-import ChordArea from './ChordArea';
-import ChordSelection from './ChordSelection';
 import NavBar from './NavBar';
-import BigFretBoard from './BigFretBoard';
 import ChordNamer from './ChordNamer';
 import TestComponent from './TestComponent';
+import ScaleVisualizer from './ScaleVisualizer';
+import { GlobalStateProvider, GlobalContext } from './../globalState';
 
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <NavBar />
-      {/* <ChordSelection /> */}
-      {/* <ChordArea /> */}
-      <ChordNamer />
-      {/* <TestComponent /> */}
-    </div>
+    <GlobalStateProvider>
+      <div className="App">
+        <NavBar />
+        {/* Main content */}
+        <GlobalContext.Consumer>
+          {(context) => {
+            return (
+              {
+                SCALES: <ScaleVisualizer />,
+                CHORD_NAMER: <ChordNamer />,
+                TEST: <TestComponent />,
+              }[context.state.activePane] || <h1>Oooops</h1>
+            );
+          }}
+        </GlobalContext.Consumer>
+      </div>
+    </GlobalStateProvider>
   );
 }
 

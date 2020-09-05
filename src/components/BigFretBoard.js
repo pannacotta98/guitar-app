@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GlobalContext } from './../globalState';
 import _ from 'lodash';
 
 const Container = styled.div`
@@ -240,9 +241,11 @@ export default function BigFretBoard(props) {
                   x={xPos - fretSpacing / 2}
                   y={yPos + 1 /* seems to look more center */}
                   textAnchor="middle"
-                  dominant-baseline="middle"
+                  dominantBaseline="middle"
                 >
-                  {props.notes[stringIndex][fretIndex]}
+                  <GlobalContext.Consumer>
+                    {(context) => context.state.noteNamesOnFretboard[stringIndex][fretIndex]}
+                  </GlobalContext.Consumer>
                 </text>
               </g>
             ))}

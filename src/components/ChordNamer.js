@@ -42,6 +42,7 @@ const NormalCase = styled.span`
   text-transform: none;
 `;
 
+// TODO Modify to use global tuning
 export default class ChordNamer extends Component {
   constructor(props) {
     super(props);
