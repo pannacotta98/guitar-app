@@ -240,7 +240,7 @@ export default function BigFretBoard(props) {
                   x={xPos - fretSpacing / 2}
                   y={yPos + 1 /* seems to look more center */}
                   textAnchor="middle"
-                  alignmentBaseline="middle"
+                  dominant-baseline="middle"
                 >
                   {props.notes[stringIndex][fretIndex]}
                 </text>
