@@ -5,10 +5,15 @@ import * as serviceWorker from './serviceWorker';
 import GlobalStyle from './globalStyles';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
+    {/* Global styles are placed outside strict mode for now because otherwise
+    the styles will be put in the stylesheet twice; annoyinggg
+    https://github.com/styled-components/styled-components/issues/3076 */}
     <GlobalStyle />
-    <App />
-  </React.StrictMode>,
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </>,
   document.getElementById('root')
 );
 
