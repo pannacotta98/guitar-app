@@ -36,7 +36,6 @@ const SCALES_SRC = new Map(
  * A large number means complicated and a low one means simple
  */
 const CHORDS_SRC = [
-  // MAJOR
   {
     notes: '1 3 5',
     fullName: 'major',
@@ -93,7 +92,6 @@ const CHORDS_SRC = [
     scale: 'Harmonic Maj',
     weight: 30,
   },
-  // -- major add chords
   {
     notes: '1 3 (5) 9',
     fullName: 'major add 9',
@@ -101,8 +99,6 @@ const CHORDS_SRC = [
     scale: '???',
     weight: 15,
   },
-  // DOMINANT/SEVENTH
-  // -- normal
   {
     notes: '1 3 (5) b7',
     fullName: 'dominant seventh',
@@ -131,9 +127,8 @@ const CHORDS_SRC = [
     scale: 'Lydian Dominant (melodic minor 4th mode)',
     weight: 30,
   },
-  // -- altered
   {
-    notes: '1 3 (5) b7 b9 (#9,b5,6..)',
+    notes: '1 3 (5) b7 b9 (#9,b5,6..)', // TODO Does this notation work!?
     fullName: 'dominant ♭9',
     abbr: ['<sup>7♭9</sup>'],
     scale: 'Half-tone/tone (8 note scale), 1/2 step/whole step Diminished scale, Octatonic scale.',
@@ -153,7 +148,6 @@ const CHORDS_SRC = [
     scale: 'Locrian ♭4 (super-locrian)',
     weight: 25,
   },
-  // -- suspended
   {
     notes: '1 4 (5)',
     fullName: 'suspended 4th',
@@ -217,7 +211,6 @@ const CHORDS_SRC = [
     scale: 'Phrygian or phrygian ♯6',
     weight: 27,
   },
-  // -- -- added
   {
     notes: '1 4 #5',
     fullName: 'suspended 4th #5',
@@ -225,7 +218,13 @@ const CHORDS_SRC = [
     scale: '???',
     weight: 25,
   },
-  // MINOR
+  {
+    notes: '1 2 5 7',
+    fullName: 'major 7 suspended 2nd',
+    abbr: ['<sup>maj7</sup>sus2'],
+    scale: '???',
+    weight: 19,
+  },
   {
     notes: '1 b3 5',
     fullName: 'minor',
@@ -282,7 +281,6 @@ const CHORDS_SRC = [
     scale: 'Dorian',
     weight: 20,
   },
-  // -- -- added by me
   {
     notes: '1 b3 #5',
     fullName: 'minor #5',
@@ -290,7 +288,6 @@ const CHORDS_SRC = [
     scale: '???',
     weight: 20,
   },
-  // -- add
   {
     notes: '1 2 b3 5',
     fullName: 'minor add 9',
@@ -298,7 +295,6 @@ const CHORDS_SRC = [
     scale: '???',
     weight: 15,
   },
-  // DIMINISHED
   {
     notes: '1 b3 b5',
     fullName: 'diminished',
@@ -320,7 +316,6 @@ const CHORDS_SRC = [
     scale: 'Locrian or locrian ♯2',
     weight: 13,
   },
-  // OTHER
   {
     notes: '1 5',
     fullName: 'fifth/power chord',
@@ -341,6 +336,20 @@ const CHORDS_SRC = [
     abbr: ['<sup>7♯5</sup>', 'maj<sup>7+5</sup>'],
     scale: 'Whole tone (6 note scale)',
     weight: 21,
+  },
+  {
+    notes: '1',
+    fullName: 'note',
+    abbr: ['<sup>(no3, no5)</sup>'],
+    scale: '???',
+    weight: 100, // Prefer other names whenever possible
+  },
+  {
+    notes: '1 3 4 5',
+    fullName: 'add4',
+    abbr: ['<sup>add11</sup>', '<sup>add4</sup>'],
+    scale: '???',
+    weight: 15,
   },
 ];
 

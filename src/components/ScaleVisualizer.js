@@ -36,7 +36,7 @@ export default class ScaleVisualizer extends Component {
           onChange={(event) => this.setState({ selectedScale: event.target.value })}
         >
           {Array.from(SCALES_SRC.keys()).map((name) => (
-            <option>{name}</option>
+            <option key={name}>{name}</option>
           ))}
         </select>
         <BigFretBoard

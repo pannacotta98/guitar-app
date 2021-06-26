@@ -58,6 +58,7 @@ export default class ChordGenerator {
   }
 
   nameChord(fingering) {
+    console.log('Naming chord');
     const notesInChord = [];
     for (let i = 0; i < fingering.length; ++i) {
       // if string is not muted
@@ -130,7 +131,7 @@ export default class ChordGenerator {
     if (value !== undefined) {
       return value;
     } else {
-      console.warn(
+      console.log(
         'Could not name chord with intervals:',
         intervals,
         intervals

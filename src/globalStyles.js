@@ -88,6 +88,10 @@ sup {
   font-size: 0.7em;
 }
 
+b {
+  font-weight: bold;
+}
+
 body {
   color: var(--dimmer-text-color);
   font-family: 'Montserrat', sans-serif;

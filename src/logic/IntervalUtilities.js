@@ -1,7 +1,7 @@
 // TODO Think about some more elegant solution for this
 const noteNames = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
 
-export default {
+const IntervalUtilities = {
   /**
    * Returns the note normalized to octave 0
    * @param {number} noteNumber
@@ -68,3 +68,5 @@ export default {
     return intervals;
   },
 };
+
+export default IntervalUtilities;

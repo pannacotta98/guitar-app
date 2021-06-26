@@ -2,6 +2,16 @@ import React from 'react';
 import ChordGenerator from '../logic/ChordGenerator';
 // import ChordIntervals from './logic/ChordIntervals';
 import { CHORDS_SRC } from '../logic/musicalData';
+import styled from 'styled-components';
+
+const HoverableTableRow = styled.tr`
+  &:hover {
+    background-color: black;
+  }
+  td {
+    padding: 0.5rem;
+  }
+`;
 
 export default class TestComponent extends React.Component {
   componentDidMount() {
@@ -25,23 +35,50 @@ export default class TestComponent extends React.Component {
   render() {
     return (
       <>
-        <h1>All known chords</h1>
-        {/* TODO */}
-        {[...CHORDS_SRC]
-          .sort((a, b) => a.weight - b.weight)
-          .map((chord, index) => (
-            <h3
-              key={index}
-              dangerouslySetInnerHTML={{
-                __html:
-                  chord.abbr.map((q) => 'A' + q).join(' | ') +
-                  '<span style="color: black;"> - ' +
-                  chord.fullName +
-                  '</span>',
-              }}
-            />
-          ))}
+        <h2>All known chords</h2>
+        <table>
+          <tbody>
+            {[...CHORDS_SRC]
+              .sort((a, b) => a.weight - b.weight)
+              .map((chord, index) => (
+                <HoverableTableRow key={index}>
+                  <td>{chord.weight}</td>
+                  <td
+                    dangerouslySetInnerHTML={{
+                      __html: chord.abbr
+                        .map((q, i) => (i === 0 ? '<b>A' + q + '</b>' : 'A' + q))
+                        .join(' | '),
+                    }}
+                  ></td>
+                  <td>{chord.fullName}</td>
+                  {/* <td>{chord.scale}</td> */}
+                </HoverableTableRow>
+              ))}
+          </tbody>
+        </table>
       </>
     );
+    // return (
+    //   <>
+    //     <h1>All known chords</h1>
+    //     {[...CHORDS_SRC]
+    //       .sort((a, b) => a.weight - b.weight)
+    //       .map((chord, index) => (
+    //         <h3
+    //           key={index}
+    //           dangerouslySetInnerHTML={{
+    //             __html:
+    //               '' +
+    //               chord.weight +
+    //               ' &mdash; ' +
+    //               chord.abbr.map((q) => 'A' + q).join(' | ') +
+    //               '<span style="color: black;"> - ' +
+    //               chord.fullName +
+    //               '</span>',
+    //           }}
+    //         />
+    //       ))}
+    //   </>
+    // );
   }
 }
