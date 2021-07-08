@@ -42,8 +42,6 @@ export class GlobalStateProvider extends React.Component {
     tuning: initialTuning,
     noteNumbersOnFretboard: this.noteNumbersOnFretboardFromTuning(initialTuning),
     noteNamesOnFretboard: this.noteNamesOnFretboardFromTuning(initialTuning),
-    // Application state
-    activePane: 'SCALES',
   };
 
   render() {
@@ -52,7 +50,6 @@ export class GlobalStateProvider extends React.Component {
         value={{
           state: this.state,
           setTuning: this.setTuning,
-          setActivePane: (pane) => this.setState({ activePane: pane }),
         }}
       >
         {this.props.children}

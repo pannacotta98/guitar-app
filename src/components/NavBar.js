@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GlobalContext } from '../globalState';
+import { Link } from 'react-router-dom';
 
 const Navigation = styled.ul`
   display: inline;
@@ -12,6 +12,11 @@ const NavigationItem = styled.li`
   font-weight: 600;
   cursor: pointer;
   display: inline;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const NavContainer = styled.nav`
@@ -31,16 +36,16 @@ export default function NavBar() {
   return (
     <NavContainer>
       <TextLogo>LOGO</TextLogo>
-      {/* prettier-ignore */}
       <Navigation>
-        <GlobalContext.Consumer>
-          {(context) => <>
-            {/* TODO Make sure this isn't a terrible way to do this */}
-            <NavigationItem onClick={() => context.setActivePane('SCALES')}>Scales</NavigationItem>
-            <NavigationItem onClick={() => context.setActivePane('CHORD_NAMER')}>Chord Namer</NavigationItem>
-            <NavigationItem onClick={() => context.setActivePane('TEST')}>Test</NavigationItem>
-          </>}
-        </GlobalContext.Consumer>
+        <NavigationItem>
+          <Link to="/scales">Scales</Link>
+        </NavigationItem>
+        <NavigationItem>
+          <Link to="/">Chords</Link>
+        </NavigationItem>
+        <NavigationItem>
+          <Link to="/test">Test</Link>
+        </NavigationItem>
       </Navigation>
     </NavContainer>
   );

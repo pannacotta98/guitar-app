@@ -3,26 +3,28 @@ import NavBar from './NavBar';
 import ChordNamer from './ChordNamer';
 import TestComponent from './TestComponent';
 import ScaleVisualizer from './ScaleVisualizer';
-import { GlobalStateProvider, GlobalContext } from './../globalState';
+import { GlobalStateProvider } from './../globalState';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
   return (
     <GlobalStateProvider>
-      <div className="App">
-        <NavBar />
-        {/* Main content */}
-        <GlobalContext.Consumer>
-          {(context) => {
-            return (
-              {
-                SCALES: <ScaleVisualizer />,
-                CHORD_NAMER: <ChordNamer />,
-                TEST: <TestComponent />,
-              }[context.state.activePane] || <h1>Oooops</h1>
-            );
-          }}
-        </GlobalContext.Consumer>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar />
+          <Switch>
+            <Route path="/scales">
+              <ScaleVisualizer />
+            </Route>
+            <Route path="/test">
+              <TestComponent />
+            </Route>
+            <Route path="/">
+              <ChordNamer />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
     </GlobalStateProvider>
   );
 }
