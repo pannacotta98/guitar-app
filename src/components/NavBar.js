@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = styled.ul`
   display: inline;
@@ -12,6 +12,10 @@ const NavigationItem = styled.li`
   font-weight: 600;
   cursor: pointer;
   display: inline;
+
+  .selected {
+    border-bottom: var(--contrasting-text-color) solid 0.15rem;
+  }
 
   a {
     color: inherit;
@@ -38,13 +42,21 @@ export default function NavBar() {
       <TextLogo>LOGO</TextLogo>
       <Navigation>
         <NavigationItem>
-          <Link to="/scales">Scales</Link>
+          <NavLink to="/scales" activeClassName="selected">
+            Scales
+          </NavLink>
         </NavigationItem>
+
         <NavigationItem>
-          <Link to="/">Chords</Link>
+          <NavLink exact to="/" activeClassName="selected">
+            Chords
+          </NavLink>
         </NavigationItem>
+
         <NavigationItem>
-          <Link to="/test">Test</Link>
+          <NavLink to="/test" activeClassName="selected">
+            Test
+          </NavLink>
         </NavigationItem>
       </Navigation>
     </NavContainer>
