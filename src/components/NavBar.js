@@ -36,7 +36,7 @@ const TextLogo = styled.h3`
   display: inline;
 `;
 
-export default function NavBar() {
+export function NavBar() {
   return (
     <NavContainer>
       <TextLogo>LOGO</TextLogo>

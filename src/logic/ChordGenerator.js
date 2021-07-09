@@ -1,11 +1,11 @@
-import ChordIntervals from './ChordIntervals';
-import IntervalUtilities from './IntervalUtilities';
+import { ChordIntervals } from './ChordIntervals';
+import { IntervalUtilities } from './IntervalUtilities';
 import { INTERVAL_NUMBERS } from './musicalData';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
 // TODO Limit to two or more notes?
-export default class ChordGenerator {
+export class ChordGenerator {
   constructor() {
     // this.notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'];
     this.notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];

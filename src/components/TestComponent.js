@@ -1,6 +1,5 @@
 import React from 'react';
-import ChordGenerator from '../logic/ChordGenerator';
-// import ChordIntervals from './logic/ChordIntervals';
+import { ChordGenerator } from '../logic/ChordGenerator';
 import { CHORDS_SRC } from '../logic/musicalData';
 import styled from 'styled-components';
 
@@ -13,7 +12,7 @@ const HoverableTableRow = styled.tr`
   }
 `;
 
-export default class TestComponent extends React.Component {
+export class TestComponent extends React.Component {
   componentDidMount() {
     this.generator = new ChordGenerator();
 

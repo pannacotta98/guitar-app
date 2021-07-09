@@ -137,7 +137,7 @@ const size = { width: 1000, height: stringPadding * 2 + stringSpacing * (6 - 1) 
 const markerSize = 14;
 
 // Which notes are active is sent in as prop: notes as an array of strings arrays of frets nested
-export default function BigFretBoard(props) {
+export function BigFretBoard(props) {
   return (
     <Container>
       {/* TODO fixa viewBox */}

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 /* ======================== RESET ======================== */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -117,5 +117,3 @@ h3 {
   font-size: 1.2rem;
 }
 `;
-
-export default GlobalStyle;

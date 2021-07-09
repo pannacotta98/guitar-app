@@ -48,7 +48,7 @@ const TestButton = styled.button`
   }
 `; // TODO check the browser prefix thing; needed?
 
-export default class ChordSelection extends Component {
+export class ChordSelection extends Component {
   render() {
     return (
       <MainContainer>

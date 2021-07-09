@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import BigFretBoard from './BigFretBoard';
+import { BigFretBoard } from './BigFretBoard';
 import { GlobalContext } from './../globalState';
 import { SCALES_SRC } from '../logic/musicalData';
-import IntervalUtilities from '../logic/IntervalUtilities';
+import { IntervalUtilities } from '../logic/IntervalUtilities';
 
-export default class ScaleVisualizer extends Component {
+export class ScaleVisualizer extends Component {
   static contextType = GlobalContext;
 
   constructor(props) {

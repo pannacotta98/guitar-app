@@ -52,7 +52,7 @@ const StyledSvg = styled.svg`
   }
 `;
 
-export default class Chord extends React.Component {
+export class Chord extends React.Component {
   render() {
     // Should it be className instead?
     return (

@@ -21,7 +21,7 @@ const ChordAreaDiv = styled.div`
   margin-bottom: calc(-0.25 * var(--gutter));
 `;
 
-function ChordArea() {
+export function ChordArea() {
   return (
     <ChordAreaDiv>
       <Chord chordData={[0, 1, 2, 2, 3, 'x']} />
@@ -31,5 +31,3 @@ function ChordArea() {
     </ChordAreaDiv>
   );
 }
-
-export default ChordArea;

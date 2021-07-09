@@ -2,22 +2,23 @@ import { INTERVAL_NUMBERS, CHORDS_SRC } from './musicalData';
 // https://en.wikibooks.org/wiki/Music_Theory/Complete_List_of_Chord_Patterns
 
 // Singleton for now; might not be ideal in future
-export default class ChordIntervals {
+export class ChordIntervals {
   static instance;
   constructor() {
     // Initialize lookup
     this.chordLookUp = new Map();
     for (const chord of CHORDS_SRC) {
       const optionalNotes = [];
-      const requiredNotes = chord.notes.split(' ')
-        .filter(interval => {
+      const requiredNotes = chord.notes
+        .split(' ')
+        .filter((interval) => {
           const isRequired = interval[0] !== '(';
           if (!isRequired) {
             optionalNotes.push(INTERVAL_NUMBERS.get(interval.slice(1, -1)));
           }
           return isRequired;
         })
-        .map(interval => INTERVAL_NUMBERS.get(interval));
+        .map((interval) => INTERVAL_NUMBERS.get(interval));
 
       // Find all possible combinations of optional notes
       const combinations = combine(optionalNotes);
@@ -27,7 +28,10 @@ export default class ChordIntervals {
 
       for (const optionals of combinations) {
         this.chordLookUp.set(
-          requiredNotes.concat(optionals).sort((a, b) => a - b).join('|'),
+          requiredNotes
+            .concat(optionals)
+            .sort((a, b) => a - b)
+            .join('|'),
           chord
         );
       }
@@ -42,7 +46,8 @@ export default class ChordIntervals {
     // https://web.archive.org/web/20140418004051/http://dzone.com/snippets/calculate-all-combinations
     function combine(a) {
       var fn = function (n, src, got, all) {
-        if (n === 0) { // changed == to ===
+        if (n === 0) {
+          // changed == to ===
           if (got.length > 0) {
             all[all.length] = got;
           }
@@ -52,7 +57,7 @@ export default class ChordIntervals {
           fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
         }
         return;
-      }
+      };
       var all = [];
       for (var i = 0; i < a.length; i++) {
         fn(i, a, [], all);

@@ -1,5 +1,5 @@
 import React from 'react';
-import IntervalUtilities from './logic/IntervalUtilities';
+import { IntervalUtilities } from './logic/IntervalUtilities';
 
 export const GlobalContext = React.createContext();
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import BigFretBoard from './BigFretBoard';
+import { BigFretBoard } from './BigFretBoard';
 import styled from 'styled-components';
 import _ from 'lodash';
-import IntervalUtilities from './../logic/IntervalUtilities';
-import ChordGenerator from './../logic/ChordGenerator';
+import { IntervalUtilities } from './../logic/IntervalUtilities';
+import { ChordGenerator } from './../logic/ChordGenerator';
 
 const VerticallyCentered = styled.div`
   /* transform: translate(0%, 50%); */
@@ -43,7 +43,7 @@ const NormalCase = styled.span`
 `;
 
 // TODO Modify to use global tuning
-export default class ChordNamer extends Component {
+export class ChordNamer extends Component {
   constructor(props) {
     super(props);
 
