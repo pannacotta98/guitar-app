@@ -1,6 +1,6 @@
 import { ChordIntervals } from './ChordIntervals';
 import { IntervalUtilities } from './IntervalUtilities';
-import { INTERVAL_NUMBERS } from './musicalData';
+import { INTERVAL_NUMBERS, NOTE_NAMES } from './musicalData';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
@@ -8,7 +8,7 @@ import { INTERVAL_NUMBERS } from './musicalData';
 export class ChordGenerator {
   constructor() {
     // this.notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'];
-    this.notes = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
+    this.notes = NOTE_NAMES;
 
     // E2–A2–D3–G3–B3–E4 <-- scientific pitch notation
     this.tuning = 'E2 A2 D3 G3 B3 E4'
@@ -57,8 +57,7 @@ export class ChordGenerator {
     return result;
   }
 
-  nameChord(fingering) {
-    console.log('Naming chord');
+  getNotesInFingering(fingering) {
     const notesInChord = [];
     for (let i = 0; i < fingering.length; ++i) {
       // if string is not muted
@@ -66,6 +65,12 @@ export class ChordGenerator {
         notesInChord.push(this.tuning[i] + fingering[i]);
       }
     }
+    return notesInChord;
+  }
+
+  nameChord(fingering) {
+    console.log('Naming chord');
+    const notesInChord = this.getNotesInFingering(fingering);
 
     const root = Math.min(...notesInChord);
     const rootName = IntervalUtilities.toNoteName(root);

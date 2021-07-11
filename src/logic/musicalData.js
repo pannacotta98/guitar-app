@@ -14,6 +14,8 @@ const INTERVAL_NUMBERS = new Map([
   ['7' , 11]
 ]);
 
+const NOTE_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
+
 // https://en.wikipedia.org/wiki/List_of_musical_scales_and_modes
 const SCALES_SRC = new Map(
   [
@@ -353,4 +355,4 @@ const CHORDS_SRC = [
   },
 ];
 
-export { INTERVAL_NUMBERS, CHORDS_SRC, SCALES_SRC };
+export { INTERVAL_NUMBERS, CHORDS_SRC, SCALES_SRC, NOTE_NAMES };

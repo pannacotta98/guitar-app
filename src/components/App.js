@@ -6,6 +6,7 @@ import { ScaleVisualizer } from './ScaleVisualizer';
 import { NotFound } from './NotFound';
 import { GlobalStateProvider } from './../globalState';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Settings } from './Settings';
 
 export function App() {
   return (
@@ -22,6 +23,9 @@ export function App() {
             </Route>
             <Route path="/test">
               <TestComponent />
+            </Route>
+            <Route path="/settings">
+              <Settings />
             </Route>
             <Route path="*">
               <NotFound />

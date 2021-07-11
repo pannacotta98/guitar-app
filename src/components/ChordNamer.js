@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import { IntervalUtilities } from './../logic/IntervalUtilities';
 import { ChordGenerator } from './../logic/ChordGenerator';
+import { ChordDetails } from './ChordDetails';
 
 const VerticallyCentered = styled.div`
   /* transform: translate(0%, 50%); */
@@ -25,7 +26,7 @@ const OuterTextContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding: 2rem 2rem;
+  padding: var(--left-right-page-padding);
   position: absolute;
   bottom: 0;
 `;
@@ -82,12 +83,6 @@ export class ChordNamer extends Component {
           <OuterTextContainer>
             <TextContainer>
               <SmallText>Chord Namer</SmallText>
-              {/* <BigChordName>
-                {_.isEqual(this.state.fingering, [null, null, null, null, null, null])
-                  ? 'Input your notes below ↓'
-                  : chordNames.shift()}
-              </BigChordName> */}
-
               {/* TODO !!! Do i need to like purify this?? its not user input... */}
               <BigChordName
                 dangerouslySetInnerHTML={{
@@ -109,6 +104,7 @@ export class ChordNamer extends Component {
                   }}
                 />
               </SmallText>
+              {/* <ChordDetails fingering={this.state.fingering} /> */}
             </TextContainer>
           </OuterTextContainer>
           <BigFretBoard

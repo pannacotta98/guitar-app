@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChordGenerator } from '../logic/ChordGenerator';
 import { CHORDS_SRC } from '../logic/musicalData';
+import { PageBox } from './basicStyledElements';
 import styled from 'styled-components';
 
 const HoverableTableRow = styled.tr`
@@ -33,7 +34,7 @@ export class TestComponent extends React.Component {
 
   render() {
     return (
-      <>
+      <PageBox>
         <h2>All known chords</h2>
         <table>
           <tbody>
@@ -55,7 +56,7 @@ export class TestComponent extends React.Component {
               ))}
           </tbody>
         </table>
-      </>
+      </PageBox>
     );
     // return (
     //   <>

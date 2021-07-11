@@ -26,7 +26,7 @@ const NavigationItem = styled.li`
 const NavContainer = styled.nav`
   background-color: var(--main-accent);
   color: var(--contrasting-text-color);
-  padding: 1.2rem;
+  padding: 1.2rem var(--left-right-page-padding);
   box-shadow: var(--main-shadow);
   position: relative;
   z-index: 10;

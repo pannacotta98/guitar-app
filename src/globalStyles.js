@@ -69,6 +69,8 @@ table {
   --main-shadow: 5px 5px 13px 0px rgba(0, 0, 0, 0.2);
   --svg-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);
 
+  --left-right-page-padding: 2rem;
+
   /* Breakpoints */
   /* TODO Turns out css variables dont work
      in media queries... */
