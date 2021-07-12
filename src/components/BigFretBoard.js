@@ -136,7 +136,6 @@ const size = { width: 1000, height: stringPadding * 2 + stringSpacing * (6 - 1) 
 
 const markerSize = 14;
 
-// Which notes are active is sent in as prop: notes as an array of strings arrays of frets nested
 export function BigFretBoard(props) {
   return (
     <Container>
@@ -244,7 +243,11 @@ export function BigFretBoard(props) {
                   dominantBaseline="middle"
                 >
                   <GlobalContext.Consumer>
-                    {(context) => context.state.noteNamesOnFretboard[stringIndex][fretIndex]}
+                    {(context) =>
+                      context.state.tuning.notesOnFretBoard[stringIndex][
+                        fretIndex
+                      ].nameWithoutOctave()
+                    }
                   </GlobalContext.Consumer>
                 </text>
               </g>

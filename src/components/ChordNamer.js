@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BigFretBoard } from './BigFretBoard';
 import styled from 'styled-components';
 import _ from 'lodash';
-import { IntervalUtilities } from './../logic/IntervalUtilities';
-import { ChordGenerator } from './../logic/chord/ChordGenerator';
+import { IntervalUtilities } from '../logic/IntervalUtilities';
+import { ChordGenerator } from '../logic/chord/ChordGenerator';
 // import { ChordDetails } from './ChordDetails';
 
 const VerticallyCentered = styled.div`
@@ -48,18 +48,10 @@ export class ChordNamer extends Component {
   constructor(props) {
     super(props);
 
-    this.namer = new ChordGenerator(); // TODO Name makes no sense
-    const notes = this.namer.tuning.map((string) =>
-      _.fill(Array(13), string).map((openNote, fret) =>
-        IntervalUtilities.toNoteName(openNote + fret)
-      )
-    );
-
-    console.log('notes:', notes);
+    this.namer = new ChordGenerator();
 
     this.state = {
       fingering: _.fill(Array(6), null),
-      noteNames: notes,
     };
   }
 
@@ -111,7 +103,6 @@ export class ChordNamer extends Component {
             activeNotes={this.state.fingering.map((fret) =>
               _.fill(Array(13), false).map((x, index) => index === fret)
             )}
-            notes={this.state.noteNames}
             toggleNote={this.toggleNote}
           />
         </VerticallyCentered>

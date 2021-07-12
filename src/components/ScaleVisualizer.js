@@ -19,12 +19,13 @@ export class ScaleVisualizer extends Component {
   render() {
     console.log(this.context.state.tuning);
 
-    // const fingering = Array(6).fill(Array(13).fill(true));
     const notesInScale = SCALES_SRC.get(this.state.selectedScale).map((note) =>
       IntervalUtilities.normalizeNote(note + this.state.rootNumber)
     );
-    const activeNotes = this.context.state.noteNumbersOnFretboard.map((string) =>
-      string.map((noteNumber) => notesInScale.includes(noteNumber))
+    const activeNotes = this.context.state.tuning.notesOnFretBoard.map((string) =>
+      string.map((note) =>
+        notesInScale.includes(IntervalUtilities.normalizeNote(note.internalNoteNumber))
+      )
     );
 
     return (

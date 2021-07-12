@@ -35,7 +35,7 @@ export class TestComponent extends React.Component {
   render() {
     return (
       <PageBox>
-        <h2>All known chords</h2>
+        <h2>All known chords ({CHORDS_SRC.length})</h2>
         <table>
           <tbody>
             {[...CHORDS_SRC]
@@ -58,27 +58,5 @@ export class TestComponent extends React.Component {
         </table>
       </PageBox>
     );
-    // return (
-    //   <>
-    //     <h1>All known chords</h1>
-    //     {[...CHORDS_SRC]
-    //       .sort((a, b) => a.weight - b.weight)
-    //       .map((chord, index) => (
-    //         <h3
-    //           key={index}
-    //           dangerouslySetInnerHTML={{
-    //             __html:
-    //               '' +
-    //               chord.weight +
-    //               ' &mdash; ' +
-    //               chord.abbr.map((q) => 'A' + q).join(' | ') +
-    //               '<span style="color: black;"> - ' +
-    //               chord.fullName +
-    //               '</span>',
-    //           }}
-    //         />
-    //       ))}
-    //   </>
-    // );
   }
 }
