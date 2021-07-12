@@ -31,7 +31,6 @@ export class ChordIntervals {
 
       // Find all possible combinations of optional notes
       const combinations = combine(optionalNotes);
-      console.log(optionalNotes, combinations);
       if (combinations[0].length !== 0) {
         combinations.push([]); // Allow for none of the optional notes
       }

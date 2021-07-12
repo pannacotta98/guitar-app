@@ -24,7 +24,6 @@ export class ChordQuality {
    */
   static fromIntervals(intervals: number[]) {
     const value = ChordIntervals.getInstance().chordLookUp.get(intervals.join('|'));
-    console.log(ChordIntervals.getInstance().chordLookUp);
 
     if (value !== undefined) {
       return new ChordQuality(value);

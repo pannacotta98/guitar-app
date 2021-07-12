@@ -1,6 +1,5 @@
-import { Chord } from './Chord';
 import { IntervalUtilities } from '../IntervalUtilities';
-import { INTERVAL_NUMBERS, NOTE_NAMES } from '../musicalData';
+import { NOTE_NAMES } from '../musicalData';
 import { ChordQuality } from './ChordQuality';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
