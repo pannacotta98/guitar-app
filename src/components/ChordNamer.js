@@ -3,7 +3,7 @@ import { BigFretBoard } from './BigFretBoard';
 import styled from 'styled-components';
 import _ from 'lodash';
 import { IntervalUtilities } from './../logic/IntervalUtilities';
-import { ChordGenerator } from './../logic/ChordGenerator';
+import { ChordGenerator } from './../logic/chord/ChordGenerator';
 import { ChordDetails } from './ChordDetails';
 
 const VerticallyCentered = styled.div`

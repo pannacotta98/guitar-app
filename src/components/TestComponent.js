@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChordGenerator } from '../logic/ChordGenerator';
+import { ChordGenerator } from '../logic/chord/ChordGenerator';
 import { CHORDS_SRC } from '../logic/musicalData';
 import { PageBox } from './basicStyledElements';
 import styled from 'styled-components';

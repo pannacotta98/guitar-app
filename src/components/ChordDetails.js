@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IntervalUtilities } from '../logic/IntervalUtilities';
-import { ChordGenerator } from '../logic/ChordGenerator';
+import { ChordGenerator } from '../logic/chord/ChordGenerator';
 import { NOTE_NAMES } from '../logic/musicalData';
 
 const DetailsContainer = styled.div`
