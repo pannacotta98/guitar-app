@@ -16,20 +16,6 @@ const INTERVAL_NUMBERS = new Map<string, number>([
 
 const NOTE_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
 
-// https://en.wikipedia.org/wiki/List_of_musical_scales_and_modes
-const SCALES_SRC = new Map(
-  [
-    ['Major (Ionian)', '1 2 3 4 5 6 7'],
-    ['Natural Minor (Aeolian)', '1 2 b3 4 5 b6 b7'],
-    ['Dorian', '1 2 b3 4 5 6 b7'],
-    ['Harmonic Minor', '1 2 b3 4 5 b6 7'],
-  ].map((scale) => [
-    scale[0],
-    // Change to internal representation
-    scale[1].split(' ').map((interval) => INTERVAL_NUMBERS.get(interval)),
-  ])
-);
-
 interface ChordType {
   notes: string;
   fullName: string;
@@ -363,5 +349,5 @@ const CHORDS_SRC: ChordType[] = [
   },
 ];
 
-export { INTERVAL_NUMBERS, CHORDS_SRC, SCALES_SRC, NOTE_NAMES };
+export { INTERVAL_NUMBERS, CHORDS_SRC, NOTE_NAMES };
 export type { ChordType };

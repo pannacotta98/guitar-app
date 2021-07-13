@@ -244,9 +244,7 @@ export function BigFretBoard(props) {
                 >
                   <GlobalContext.Consumer>
                     {(context) =>
-                      context.state.tuning.notesOnFretBoard[stringIndex][
-                        fretIndex
-                      ].nameWithoutOctave()
+                      context.tuning.notesOnFretBoard[stringIndex][fretIndex].nameWithoutOctave()
                     }
                   </GlobalContext.Consumer>
                 </text>
