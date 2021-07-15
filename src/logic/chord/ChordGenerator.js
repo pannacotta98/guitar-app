@@ -1,7 +1,6 @@
 import { IntervalUtilities } from '../IntervalUtilities';
 import { NOTE_NAMES } from '../musicalData';
 import { ChordQuality } from './ChordQuality';
-import { Note } from '../note/Note';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
@@ -17,7 +16,7 @@ export class ChordGenerator {
     console.log('tuning in numbers:', this.tuning);
   }
 
-  getAllChordsInFretRange(low, high) {
+  /* getAllChordsInFretRange(low, high) {
     const result = [];
 
     // The posible fret positions
@@ -51,7 +50,7 @@ export class ChordGenerator {
     }
 
     return result;
-  }
+  }*/
 
   getNotesInFingering(fingering) {
     const notesInChord = [];

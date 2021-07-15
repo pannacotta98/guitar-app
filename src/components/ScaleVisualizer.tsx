@@ -10,7 +10,7 @@ export function ScaleVisualizer() {
   const globalContext = useContext(GlobalContext);
 
   const [selectedScale, setSelectedScale] = useState('Natural Minor (Aeolian)');
-  const [root, setRoot] = useState(Note.fromName('C0'));
+  const [root] = useState(Note.fromName('C0'));
 
   const notesInScale = Scale.fromRootAndName(root, selectedScale)?.notes.map((note) => {
     return IntervalUtilities.normalizeNote(note.internalNoteNumber);

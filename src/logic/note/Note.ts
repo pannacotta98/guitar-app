@@ -68,6 +68,7 @@ export function normalizeInternalNote(noteNumber: InternalNoteNumber): InternalN
 }
 
 // TODO Consider having double sharp/flats
+// eslint-disable-next-line
 type NoteName =
   | 'C'
   | 'C#'
