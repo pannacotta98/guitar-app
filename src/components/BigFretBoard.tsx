@@ -142,6 +142,7 @@ export function BigFretBoard({ activeNotes, toggleNote }: Props) {
                 xPos={xPos}
                 yPos={yPos}
                 toggleNote={toggleNote}
+                key={`${xPos},${yPos}`}
               />
             ))}
           </React.Fragment>

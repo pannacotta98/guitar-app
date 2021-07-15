@@ -1,6 +1,7 @@
 import { IntervalUtilities } from '../IntervalUtilities';
 import { NOTE_NAMES } from '../musicalData';
 import { ChordQuality } from './ChordQuality';
+import { occurences } from '../util';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
@@ -64,8 +65,8 @@ export class ChordGenerator {
   }
 
   nameChord(fingering) {
-    console.log('Naming chord');
-    console.log(fingering);
+    // console.log('Naming chord');
+    // console.log(fingering);
     const notesInChord = this.getNotesInFingering(fingering);
 
     const root = Math.min(...notesInChord);
@@ -78,12 +79,7 @@ export class ChordGenerator {
     const notesInChordNormalizedNoDuplicates = [...new Set(notesInChordNormalized)];
     notesInChordNormalizedNoDuplicates.sort((a, b) => a - b);
 
-    // Find frequency/count of each note
-    var counts = {};
-    for (let i = 0; i < notesInChordNormalized.length; i++) {
-      const num = notesInChordNormalized[i];
-      counts[num] = counts[num] ? counts[num] + 1 : 1;
-    }
+    const counts = occurences(notesInChordNormalized);
 
     const result = [];
 
@@ -95,7 +91,7 @@ export class ChordGenerator {
       // from the chord quality if it is not included in the rest of the voicing
       if (!buildNoteIsRoot) {
         includedNotes = notesInChordNormalizedNoDuplicates.filter(
-          (note) => !(note === IntervalUtilities.normalizeNote(root) && counts[note] === 1)
+          (note) => !(note === IntervalUtilities.normalizeNote(root) && counts.get(note) === 1)
         );
       }
 

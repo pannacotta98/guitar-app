@@ -21,3 +21,13 @@ export function combine<T>(a: T[]) {
   all.push(a);
   return all;
 }
+
+export function occurences<T>(input: T[]) {
+  const counts = new Map<T, number>();
+  for (const element of input) {
+    const elementOccurences = counts.get(element);
+    if (elementOccurences !== undefined) counts.set(element, elementOccurences + 1);
+    else counts.set(element, 1);
+  }
+  return counts;
+}

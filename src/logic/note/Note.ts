@@ -51,11 +51,22 @@ export class Note {
    * @param noteName the name of the note including the octave, for example 'F#3'
    * @returns a new note
    */
-  static fromName(noteName: string) {
+  static fromName(noteName: string): Note {
     const name = noteName.slice(0, -1);
     const octave = parseInt(noteName.slice(-1));
     const number: InternalNoteNumber = octave * noteNames.length + noteNames.indexOf(name);
     return new Note(number);
+  }
+
+  static lowest(notes: Note[]): Note {
+    let currentLowest = notes[0];
+    // Skip first element; it is assigned above
+    for (let i = 1; i < notes.length; ++i) {
+      if (notes[i].internalNoteNumber > currentLowest.internalNoteNumber) {
+        currentLowest = notes[i];
+      }
+    }
+    return currentLowest;
   }
 }
 
