@@ -1,13 +1,12 @@
-import { ChordIntervals } from './ChordIntervals';
-import { IntervalUtilities } from './IntervalUtilities';
-import { INTERVAL_NUMBERS, NOTE_NAMES } from './musicalData';
+import { IntervalUtilities } from '../IntervalUtilities';
+import { NOTE_NAMES } from '../musicalData';
+import { ChordQuality } from './ChordQuality';
 // here is some stuff that could be useful:
 // - https://www.reddit.com/r/musictheory/comments/1jd894/looking_for_an_algorithm_that_generates_chord/
 
 // TODO Limit to two or more notes?
 export class ChordGenerator {
   constructor() {
-    // this.notes = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'];
     this.notes = NOTE_NAMES;
 
     // E2–A2–D3–G3–B3–E4 <-- scientific pitch notation
@@ -15,13 +14,9 @@ export class ChordGenerator {
       .split(' ')
       .map((note) => IntervalUtilities.toNoteNumber(note));
     console.log('tuning in numbers:', this.tuning);
-    console.log(
-      'tuning:',
-      this.tuning.map((noteNumber) => IntervalUtilities.toNoteNameWithOctave(noteNumber))
-    );
   }
 
-  getAllChordsInFretRange(low, high) {
+  /* getAllChordsInFretRange(low, high) {
     const result = [];
 
     // The posible fret positions
@@ -55,7 +50,7 @@ export class ChordGenerator {
     }
 
     return result;
-  }
+  }*/
 
   getNotesInFingering(fingering) {
     const notesInChord = [];
@@ -70,6 +65,7 @@ export class ChordGenerator {
 
   nameChord(fingering) {
     console.log('Naming chord');
+    console.log(fingering);
     const notesInChord = this.getNotesInFingering(fingering);
 
     const root = Math.min(...notesInChord);
@@ -103,7 +99,7 @@ export class ChordGenerator {
         );
       }
 
-      const chord = this.getChordFromIntervals(
+      const chord = ChordQuality.fromIntervals(
         IntervalUtilities.getIntervals(includedNotes, buildNote)
       );
 
@@ -123,34 +119,5 @@ export class ChordGenerator {
     return result.map(
       (obj) => `${obj.root}${obj.chordTypeInfo.abbr[0]}${obj.bass !== null ? `/${obj.bass}` : ''}`
     );
-  }
-
-  /**
-   *
-   * @param {number[]} intervals A list of the intervals between the root and each note
-   * ex: [0, 2, 4, 7] where 0 is the root
-   */
-  getChordFromIntervals(intervals) {
-    const value = ChordIntervals.getInstance().chordLookUp.get(intervals.join('|'));
-
-    if (value !== undefined) {
-      return value;
-    } else {
-      console.log(
-        'Could not name chord with intervals:',
-        intervals,
-        intervals
-          .map((i) => {
-            for (const entry of INTERVAL_NUMBERS) {
-              if (entry[1] === i) {
-                return entry[0];
-              }
-            }
-            return '?';
-          })
-          .join('|')
-      );
-      return null;
-    }
   }
 }
