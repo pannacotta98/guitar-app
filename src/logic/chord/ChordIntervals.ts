@@ -2,6 +2,7 @@ import { INTERVAL_NUMBERS, CHORDS_SRC, ChordType } from '../musicalData';
 import { combine } from '../util';
 // https://en.wikibooks.org/wiki/Music_Theory/Complete_List_of_Chord_Patterns
 
+// TODO Change
 // Singleton for now; might not be ideal in future
 export class ChordIntervals {
   static instance: ChordIntervals;
@@ -52,12 +53,12 @@ export class ChordIntervals {
         );
       }
 
-      console.log(chord.fullName, requiredNotes, optionalNotes);
+      // console.log(chord.fullName, requiredNotes, optionalNotes);
     }
 
     // console.log(this.chordLookUp);
-    console.log('size of chordLookUp:', this.chordLookUp.size);
-    console.log('size of CHORD_SRC', CHORDS_SRC.length);
+    // console.log('size of chordLookUp:', this.chordLookUp.size);
+    // console.log('size of CHORD_SRC', CHORDS_SRC.length);
   }
 
   static getInstance() {

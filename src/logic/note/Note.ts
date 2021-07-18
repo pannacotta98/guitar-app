@@ -1,3 +1,6 @@
+import { GuitarFingering } from '../chord/GuitarChord';
+import { Tuning } from '../tuning/Tuning';
+
 /**
  * The internal representation is described by a number counting upwards in halfsteps starting
  * with C0 represented by 0. So it begins like C0=0, C#0=1, D=2, ...
@@ -13,7 +16,7 @@ const noteNames = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', '
 export class Note {
   readonly internalNoteNumber: InternalNoteNumber;
 
-  private constructor(internalNoteNumber: InternalNoteNumber) {
+  protected constructor(internalNoteNumber: InternalNoteNumber) {
     this.internalNoteNumber = internalNoteNumber;
   }
 
@@ -62,11 +65,23 @@ export class Note {
     let currentLowest = notes[0];
     // Skip first element; it is assigned above
     for (let i = 1; i < notes.length; ++i) {
-      if (notes[i].internalNoteNumber > currentLowest.internalNoteNumber) {
+      if (notes[i].internalNoteNumber < currentLowest.internalNoteNumber) {
         currentLowest = notes[i];
       }
     }
     return currentLowest;
+  }
+
+  static allFromFingering(fingering: GuitarFingering, tuning: Tuning): Note[] {
+    const notesInChord: Note[] = [];
+    for (let i = 0; i < fingering.length; ++i) {
+      // if string is not muted
+      const fretPos = fingering[i];
+      if (fretPos !== null) {
+        notesInChord.push(tuning.notesOnFretBoard[i][fretPos]);
+      }
+    }
+    return notesInChord;
   }
 }
 
@@ -75,26 +90,27 @@ export class Note {
  * @param noteNumber
  */
 export function normalizeInternalNote(noteNumber: InternalNoteNumber): InternalNoteNumber {
-  return noteNumber % noteNames.length;
+  // TODO I need to think about this i think
+  // return noteNumber % noteNames.length;
+  return modulo(noteNumber, noteNames.length);
 }
 
+// TODO Maybe move
+const modulo = (a: number, n: number) => ((a % n) + n) % n;
+
 // TODO Consider having double sharp/flats
+// prettier-ignore
 // eslint-disable-next-line
 type NoteName =
   | 'C'
-  | 'C#'
-  | 'Db'
+  | 'C#' | 'Db'
   | 'D'
-  | 'D#'
-  | 'Eb'
+  | 'D#' | 'Eb'
   | 'E'
   | 'F'
-  | 'F#'
-  | 'Gb'
+  | 'F#' | 'Gb'
   | 'G'
-  | 'G#'
-  | 'Ab'
+  | 'G#' | 'Ab'
   | 'A'
-  | 'A#'
-  | 'Bb'
+  | 'A#' | 'Bb'
   | 'B';

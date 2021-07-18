@@ -23,7 +23,9 @@ export class ChordQuality {
    * the root and each note. Ex: [0, 2, 4, 7] where 0 is the root
    */
   static fromIntervals(intervals: number[]) {
-    const value = ChordIntervals.getInstance().chordLookUp.get(intervals.join('|'));
+    const value = ChordIntervals.getInstance().chordLookUp.get(
+      [...intervals].sort((a, b) => a - b).join('|')
+    );
 
     if (value !== undefined) {
       return new ChordQuality(value);
