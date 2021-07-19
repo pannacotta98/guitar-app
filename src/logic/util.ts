@@ -31,3 +31,6 @@ export function occurences<T>(input: T[]) {
   }
   return counts;
 }
+
+/** Modulo operator as opposed to the built-in remainder operator (%) */
+export const modulo = (a: number, n: number) => ((a % n) + n) % n;

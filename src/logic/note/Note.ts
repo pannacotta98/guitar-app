@@ -1,11 +1,12 @@
 import { GuitarFingering } from '../chord/GuitarChord';
 import { Tuning } from '../tuning/Tuning';
+import { modulo } from '../util';
 
 /**
  * The internal representation is described by a number counting upwards in halfsteps starting
  * with C0 represented by 0. So it begins like C0=0, C#0=1, D=2, ...
  */
-type InternalNoteNumber = number;
+export type InternalNoteNumber = number;
 
 // TODO Think about some more elegant solution for this
 const noteNames = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
@@ -61,6 +62,10 @@ export class Note {
     return new Note(number);
   }
 
+  static fromInternalNoteNumber(num: InternalNoteNumber) {
+    return new Note(num);
+  }
+
   static lowest(notes: Note[]): Note {
     let currentLowest = notes[0];
     // Skip first element; it is assigned above
@@ -94,9 +99,6 @@ export function normalizeInternalNote(noteNumber: InternalNoteNumber): InternalN
   // return noteNumber % noteNames.length;
   return modulo(noteNumber, noteNames.length);
 }
-
-// TODO Maybe move
-const modulo = (a: number, n: number) => ((a % n) + n) % n;
 
 // TODO Consider having double sharp/flats
 // prettier-ignore
