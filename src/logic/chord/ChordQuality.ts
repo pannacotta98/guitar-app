@@ -1,6 +1,6 @@
+import { INTERVAL_NUMBERS } from '../interval/data';
 import { ChordIntervals } from './ChordIntervals';
-import { INTERVAL_NUMBERS } from '../musicalData';
-import { ChordType } from '../musicalData';
+import { ChordType } from './data';
 
 export class ChordQuality {
   readonly notes: string;

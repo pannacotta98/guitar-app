@@ -1,7 +1,7 @@
 import React from 'react';
-import { CHORDS_SRC } from '../logic/musicalData';
 import { PageBox } from './basicStyledElements';
 import styled from 'styled-components';
+import { CHORDS_SRC } from '../logic/chord/data';
 
 const HoverableTableRow = styled.tr`
   &:hover {

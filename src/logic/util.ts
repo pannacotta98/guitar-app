@@ -34,3 +34,6 @@ export function occurences<T>(input: T[]) {
 
 /** Modulo operator as opposed to the built-in remainder operator (%) */
 export const modulo = (a: number, n: number) => ((a % n) + n) % n;
+
+/** Sorting function for numbers */
+export const increasingly = (a: number, b: number) => a - b;

@@ -1,4 +1,4 @@
-import { INTERVAL_NUMBERS } from '../musicalData';
+import { INTERVAL_NUMBERS } from '../interval/data';
 
 // https://en.wikipedia.org/wiki/List_of_musical_scales_and_modes
 export const SCALES_SRC = new Map(

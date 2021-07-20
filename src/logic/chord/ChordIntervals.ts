@@ -1,5 +1,6 @@
-import { INTERVAL_NUMBERS, CHORDS_SRC, ChordType } from '../musicalData';
+import { INTERVAL_NUMBERS } from '../interval/data';
 import { combine } from '../util';
+import { CHORDS_SRC, ChordType } from './data';
 // https://en.wikibooks.org/wiki/Music_Theory/Complete_List_of_Chord_Patterns
 
 // TODO Change
