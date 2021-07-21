@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BigFretBoard } from './BigFretBoard';
 import styled from 'styled-components';
 import _ from 'lodash';
-import { ChordGenerator } from '../logic/chord/ChordGenerator';
-import { GuitarFingering } from '../logic/chord/GuitarChord';
+import { GuitarChord, GuitarFingering } from '../logic/chord/GuitarChord';
+import { GlobalContext } from '../globalState';
 // import { ChordDetails } from './ChordDetails';
 
 const VerticallyCentered = styled.div`
@@ -39,9 +39,8 @@ const NormalCase = styled.span`
   text-transform: none;
 `;
 
-// TODO Modify to use global tuning
-const namer = new ChordGenerator();
 export function ChordNamer() {
+  const globalContext = useContext(GlobalContext);
   const [fingering, setFingering] = useState<GuitarFingering>([null, null, null, null, null, null]);
 
   function toggleNote(stringIndex: number, fretIndex: number) {
@@ -54,7 +53,7 @@ export function ChordNamer() {
     setFingering(tempFingering);
   }
 
-  const chordNames = namer.nameChord(fingering);
+  const chords = GuitarChord.allFromFingering(fingering, globalContext.tuning);
 
   return (
     <Container>
@@ -67,8 +66,8 @@ export function ChordNamer() {
               dangerouslySetInnerHTML={{
                 __html: _.isEqual(fingering, [null, null, null, null, null, null])
                   ? 'Input your notes below ↓'
-                  : chordNames.length > 0
-                  ? `${chordNames.shift()}`
+                  : chords.length > 0
+                  ? `${chords.shift()}`
                   : 'I don’t know that one... :(',
               }}
             />
@@ -79,7 +78,7 @@ export function ChordNamer() {
                 dangerouslySetInnerHTML={{
                   __html: _.isEqual(fingering, [null, null, null, null, null, null])
                     ? ''
-                    : chordNames.join('\xa0\xa0\xa0\xa0'),
+                    : chords.join('\xa0\xa0\xa0\xa0'),
                 }}
               />
             </SmallText>

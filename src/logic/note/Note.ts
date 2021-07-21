@@ -1,15 +1,13 @@
 import { GuitarFingering } from '../chord/GuitarChord';
 import { Tuning } from '../tuning/Tuning';
 import { modulo } from '../util';
+import { NOTE_NAMES } from './data';
 
 /**
  * The internal representation is described by a number counting upwards in halfsteps starting
  * with C0 represented by 0. So it begins like C0=0, C#0=1, D=2, ...
  */
 export type InternalNoteNumber = number;
-
-// TODO Think about some more elegant solution for this
-const noteNames = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
 
 /**
  *
@@ -30,7 +28,7 @@ export class Note {
    * @returns the name of the note with octave, for example 'D4'
    */
   nameWithoutOctave() {
-    return noteNames[normalizeInternalNote(this.internalNoteNumber)];
+    return NOTE_NAMES[normalizeInternalNote(this.internalNoteNumber)];
   }
 
   /**
@@ -38,7 +36,7 @@ export class Note {
    * @returns the name of the note without octave, for example 'D'
    */
   nameWithOctave() {
-    return `${this.nameWithoutOctave()}${Math.trunc(this.internalNoteNumber / noteNames.length)}`;
+    return `${this.nameWithoutOctave()}${Math.trunc(this.internalNoteNumber / NOTE_NAMES.length)}`;
   }
 
   /**
@@ -51,6 +49,19 @@ export class Note {
   }
 
   /**
+   *
+   * @returns a new Note restricted to octave 0
+   */
+  normalized() {
+    return new Note(normalizeInternalNote(this.internalNoteNumber));
+  }
+
+  /** Equals if same note in same octave */
+  equals(otherNote: Note) {
+    return this.internalNoteNumber === otherNote.internalNoteNumber;
+  }
+
+  /**
    * Create a `Note` from note name
    * @param noteName the name of the note including the octave, for example 'F#3'
    * @returns a new note
@@ -58,7 +69,7 @@ export class Note {
   static fromName(noteName: string): Note {
     const name = noteName.slice(0, -1);
     const octave = parseInt(noteName.slice(-1));
-    const number: InternalNoteNumber = octave * noteNames.length + noteNames.indexOf(name);
+    const number: InternalNoteNumber = octave * NOTE_NAMES.length + NOTE_NAMES.indexOf(name);
     return new Note(number);
   }
 
@@ -95,24 +106,5 @@ export class Note {
  * @param noteNumber
  */
 export function normalizeInternalNote(noteNumber: InternalNoteNumber): InternalNoteNumber {
-  // TODO I need to think about this i think
-  // return noteNumber % noteNames.length;
-  return modulo(noteNumber, noteNames.length);
+  return modulo(noteNumber, NOTE_NAMES.length);
 }
-
-// TODO Consider having double sharp/flats
-// prettier-ignore
-// eslint-disable-next-line
-type NoteName =
-  | 'C'
-  | 'C#' | 'Db'
-  | 'D'
-  | 'D#' | 'Eb'
-  | 'E'
-  | 'F'
-  | 'F#' | 'Gb'
-  | 'G'
-  | 'G#' | 'Ab'
-  | 'A'
-  | 'A#' | 'Bb'
-  | 'B';

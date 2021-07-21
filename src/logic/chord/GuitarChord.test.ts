@@ -1,25 +1,36 @@
-import { ChordGenerator } from './ChordGenerator';
+import { Tuning } from '../tuning/Tuning';
+import { GuitarChord } from './GuitarChord';
 
-const cg = new ChordGenerator();
+const stdTuning = Tuning.fromNotes('E2 A2 D3 G3 B3 E4');
 
 test('Naming E major', () => {
-  expect(cg.nameChord([0, 2, 2, 1, 0, 0])).toContain('E');
+  expect(
+    GuitarChord.allFromFingering([0, 2, 2, 1, 0, 0], stdTuning).map((c) => c.toString())
+  ).toContain('E');
 });
 
 test('Naming E minor', () => {
-  expect(cg.nameChord([0, 2, 2, 0, 0, 0])).toContain('Em');
+  expect(
+    GuitarChord.allFromFingering([0, 2, 2, 0, 0, 0], stdTuning).map((c) => c.toString())
+  ).toContain('Em');
 });
 
 test('Naming F minor add9', () => {
-  expect(cg.nameChord([1, 3, 5, 1, 1, 1])).toContain('Fm<sup>add9</sup>');
+  expect(
+    GuitarChord.allFromFingering([1, 3, 5, 1, 1, 1], stdTuning).map((c) => c.toString())
+  ).toContain('Fm<sup>add9</sup>');
 });
 
 test('Naming D/F#', () => {
-  expect(cg.nameChord([2, 0, 0, 2, 3, 2])).toContain('D/F#');
+  expect(
+    GuitarChord.allFromFingering([2, 0, 0, 2, 3, 2], stdTuning).map((c) => c.toString())
+  ).toContain('D/F#');
 });
 
 test('Naming F/F#', () => {
-  expect(cg.nameChord([2, 3, 3, 2, 1, 1])).toContain('F/F#');
+  expect(
+    GuitarChord.allFromFingering([2, 3, 3, 2, 1, 1], stdTuning).map((c) => c.toString())
+  ).toContain('F/F#');
 });
 
 // TODO These might be useful for unit test

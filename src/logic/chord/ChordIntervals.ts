@@ -1,72 +1,46 @@
 import { INTERVAL_NUMBERS } from '../interval/data';
 import { combine } from '../util';
 import { CHORDS_SRC, ChordType } from './data';
-// https://en.wikibooks.org/wiki/Music_Theory/Complete_List_of_Chord_Patterns
 
-// TODO Change
-// Singleton for now; might not be ideal in future
-export class ChordIntervals {
-  static instance: ChordIntervals;
+/**
+ * The entries have the form
+ *   'a|b|c' => ChordType
+ * where a, b, and c are intevals in semitones
+ */
+export const chordLookUp: Map<string, ChordType> = new Map();
 
-  chordLookUp: Map<string, ChordType>;
-
-  constructor() {
-    // Initialize lookup
-    this.chordLookUp = new Map();
-    for (const chord of CHORDS_SRC) {
-      const optionalNotes: number[] = [];
-      const requiredNotes = chord.notes
-        .split(' ')
-        .filter((interval) => {
-          const isRequired = interval[0] !== '(';
-          if (!isRequired) {
-            const intervalNumber = INTERVAL_NUMBERS.get(interval.slice(1, -1));
-            if (intervalNumber !== undefined) {
-              optionalNotes.push(intervalNumber);
-            } else {
-              console.error('Somethiiing is wrooOoOng with chord lookup thing', interval);
-            }
-          }
-          return isRequired;
-        })
-        .map((interval) => INTERVAL_NUMBERS.get(interval));
-
-      // Find all possible combinations of optional notes
-      const combinations = combine(optionalNotes);
-      if (combinations[0].length !== 0) {
-        combinations.push([]); // Allow for none of the optional notes
+// TODO Make this a bit more robust and maybe move it
+// Initialize lookup
+for (const chord of CHORDS_SRC) {
+  const optionalNotes: number[] = [];
+  const requiredNotes = chord.notes
+    .split(' ')
+    .filter((interval) => {
+      const isRequired = interval[0] !== '(';
+      if (!isRequired) {
+        const intervalNumber = INTERVAL_NUMBERS.get(interval.slice(1, -1));
+        if (intervalNumber !== undefined) optionalNotes.push(intervalNumber);
+        else throw Error('Parsing chord dictionary failed.');
       }
+      return isRequired;
+    })
+    .map((interval) => INTERVAL_NUMBERS.get(interval));
 
-      for (const optionals of combinations) {
-        this.chordLookUp.set(
-          requiredNotes
-            .concat(optionals)
-            .sort((a, b) => {
-              // TODO Hacking typescript until the types are improved in other places
-              if (a === undefined || b === undefined) {
-                console.error('bläää', a, b);
-                return 0;
-              }
-              return a - b;
-            })
-            .join('|'),
-          chord
-        );
-      }
-
-      // console.log(chord.fullName, requiredNotes, optionalNotes);
-    }
-
-    // console.log(this.chordLookUp);
-    // console.log('size of chordLookUp:', this.chordLookUp.size);
-    // console.log('size of CHORD_SRC', CHORDS_SRC.length);
+  if (requiredNotes.some((note) => note === undefined)) {
+    throw Error('Parsing chord dictionary failed.');
   }
 
-  static getInstance() {
-    if (ChordIntervals.instance) {
-      return ChordIntervals.instance;
-    }
-    ChordIntervals.instance = new ChordIntervals();
-    return ChordIntervals.instance;
+  // Find all possible combinations of optional notes
+  const combinations: number[][] = combine(optionalNotes);
+  if (combinations[0].length !== 0) {
+    combinations.push([]); // Allow for none of the optional notes
+  }
+
+  for (const optionals of combinations) {
+    const chordVariation = requiredNotes
+      .concat(optionals)
+      .sort((a, b) => a! - b!) // If any element is undefined an error is thrown above
+      .join('|');
+    chordLookUp.set(chordVariation, chord);
   }
 }

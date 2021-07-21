@@ -106,7 +106,7 @@ export const CHORDS_SRC: ChordType[] = [
   //   weight: 30,
   // },
   // {
-  //   notes: '1 3 (5) b7 b9 (#9,b5,6..)', // TODO Does this notation work!?
+  //   notes: '1 3 (5) b7 b9 (#9,b5,6..)', // TODO Does this notation work!? (no)
   //   fullName: 'dominant ♭9',
   //   abbr: ['<sup>7♭9</sup>'],
   //   scale: 'Half-tone/tone (8 note scale), 1/2 step/whole step Diminished scale, Octatonic scale.',
