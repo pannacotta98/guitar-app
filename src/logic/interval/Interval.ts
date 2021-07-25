@@ -1,5 +1,6 @@
 import { InternalNoteNumber, normalizeInternalNote, Note } from '../note/Note';
 
+// FIXME Not sure this is how this should be exported
 export namespace Interval {
   /**
    * Returns the intervals, i.e. the distance from root to each

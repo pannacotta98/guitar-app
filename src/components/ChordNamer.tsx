@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import { GuitarChord, GuitarFingering } from '../logic/chord/GuitarChord';
 import { GlobalContext } from '../globalState';
-// import { ChordDetails } from './ChordDetails';
+import { ChordDetails } from './ChordDetails';
 
 const VerticallyCentered = styled.div`
   /* transform: translate(0%, 50%); */
@@ -54,7 +54,9 @@ export function ChordNamer() {
   }
 
   const chords = GuitarChord.allFromFingering(fingering, globalContext.tuning);
+  const noFretsPressed = _.isEqual(fingering, [null, null, null, null, null, null]);
 
+  // TODO Some joke about really long fingers when voicing is very spread out?
   return (
     <Container>
       <VerticallyCentered>
@@ -64,10 +66,10 @@ export function ChordNamer() {
 
             <BigChordName
               dangerouslySetInnerHTML={{
-                __html: _.isEqual(fingering, [null, null, null, null, null, null])
+                __html: noFretsPressed
                   ? 'Input your notes below ↓'
                   : chords.length > 0
-                  ? `${chords.shift()}`
+                  ? `${chords[0]}`
                   : 'I don’t know that one... :(',
               }}
             />
@@ -76,14 +78,12 @@ export function ChordNamer() {
               Also known as:&nbsp;&nbsp;&nbsp;&nbsp;
               <NormalCase
                 dangerouslySetInnerHTML={{
-                  __html: _.isEqual(fingering, [null, null, null, null, null, null])
-                    ? ''
-                    : chords.join('\xa0\xa0\xa0\xa0'),
+                  __html: noFretsPressed ? '' : chords.slice(1).join('\xa0\xa0\xa0\xa0'),
                 }}
               />
             </SmallText>
 
-            {/* <ChordDetails fingering={this.state.fingering} /> */}
+            <ChordDetails chord={chords[0]} />
           </TextContainer>
         </OuterTextContainer>
         <BigFretBoard

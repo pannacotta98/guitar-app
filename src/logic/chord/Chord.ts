@@ -21,6 +21,12 @@ export class Chord {
     return `${root}${this.quality}${bass}`;
   }
 
+  getAllAlternativeChordNotations() {
+    const root = this.root.nameWithoutOctave();
+    const bass = !this.bass.equals(this.root) ? `/${this.bass.nameWithoutOctave()}` : '';
+    return this.quality.abbr.map((abbr) => `${root}${abbr}${bass}`);
+  }
+
   protected static fromRootNotesAndBass(
     root: Note,
     bass: Note,
