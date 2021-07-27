@@ -15,6 +15,7 @@ export interface ChordType {
  */
 export const CHORDS_SRC: ChordType[] = [
   {
+    // CHECKED
     notes: '1 3 5',
     fullName: 'major',
     abbr: ['', 'major', 'M'],
@@ -22,6 +23,7 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 10,
   },
   {
+    // CHECKED
     notes: '1 3 (5) 7',
     fullName: 'major seventh',
     abbr: ['maj<sup>7</sup>', '<sup>Δ7</sup>', 'ma7', 'M7', 'Δ'],
@@ -29,6 +31,7 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 15,
   },
   {
+    // CHECKED
     notes: '1 3 (5) 7 9',
     fullName: 'major ninth',
     abbr: ['maj<sup>9</sup>'],
@@ -36,6 +39,7 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 20,
   },
   {
+    // CHECKED
     notes: '1 3 (5) 7 (9) (11) 13',
     fullName: 'major thirteenth',
     abbr: ['maj<sup>13</sup>'],
@@ -43,6 +47,7 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 20,
   },
   {
+    // CHECKED
     notes: '1 3 (5) 6',
     fullName: 'sixth',
     abbr: ['<sup>6</sup>', '<sup>add6</sup>', '<sup>add13</sup>'],
@@ -50,22 +55,31 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 15,
   },
   {
+    // CHECKED
     notes: '1 3 (5) 6 9',
     fullName: 'sixth/ninth',
     abbr: ['<sup>6/9</sup>', '<sup>69</sup>'],
     scale: 'Ionian',
     weight: 20,
   },
-  // {
-  //   notes: '1 3 (5) (7) #11 (9,13..)', // fix
-  //   fullName: 'lydian',
-  //   abbr: ['maj<sup>♯4</sup>', '<sup>Δ♯4</sup>', '<sup>Δ♯11</sup>'],
-  //   scale: 'Lydian',
-  //   weight: 22,
-  // },
+  //================| WIP |==================
+  {
+    notes: '1 3 (5) #11',
+    fullName: 'lydian',
+    abbr: ['<sup>add#11</sup>'],
+    scale: 'lydian',
+    weight: 22,
+  },
+  {
+    notes: '1 3 (5) 7 #11',
+    fullName: 'lydian',
+    abbr: ['maj<sup>7#11</sup>', '<sup>Δ♯11</sup>'],
+    scale: 'lydian',
+    weight: 22,
+  },
   {
     notes: '1 3 (5) (7) (9) b13 (11)',
-    fullName: 'major seventh ♭6, or b13', // Detta känns väl inte helt huuundra
+    fullName: 'major seventh ♭6, or b13', // FIXME Detta känns väl inte helt huuundra
     abbr: ['maj7♭6', 'ma7♭6', 'M7♭6'],
     scale: 'Harmonic Maj',
     weight: 30,
@@ -197,9 +211,9 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 25,
   },
   {
-    notes: '1 2 5 7',
+    notes: '1 2 (5) 7',
     fullName: 'major 7 suspended 2nd',
-    abbr: ['<sup>maj7</sup>sus2'],
+    abbr: ['maj<sup>7</sup>sus<sup>2</sup>'],
     scale: '???',
     weight: 19,
   },
@@ -217,6 +231,14 @@ export const CHORDS_SRC: ChordType[] = [
     scale: 'Dorian or aeolian',
     weight: 15,
   },
+
+  {
+    notes: '1 b3 (5) 7',
+    fullName: 'minor/major seventh',
+    abbr: ['m<sup>maj7</sup>', 'm/ma7', 'm<sup>M7</sup>', '-<sup>Δ7</sup>', 'm<sup>Δ</sup>'],
+    scale: 'Harmonic or melodic minor',
+    weight: 20,
+  },
   // {
   //   notes: '1 b3 (5) 7 (9, 13)',
   //   fullName: 'minor/major seventh',
@@ -231,6 +253,7 @@ export const CHORDS_SRC: ChordType[] = [
   //   scale: 'Harmonic Minor',
   //   weight: 20,
   // },
+
   {
     notes: '1 b3 (5) 6',
     fullName: 'minor sixth',
@@ -287,20 +310,15 @@ export const CHORDS_SRC: ChordType[] = [
     scale: 'Tone/Half-tone (8 note scale)',
     weight: 13,
   },
-  // {
-  //   notes: '1 b3 b5 b7 (b9 or 9,11,13..)',
-  //   fullName: 'half-diminished',
-  //   abbr: ['m7♭5', 'ø'],
-  //   scale: 'Locrian or locrian ♯2',
-  //   weight: 13,
-  // },
+
   {
-    notes: '1 5',
-    fullName: 'fifth/power chord',
-    abbr: ['<sup>5</sup>', '<sup>(no 3rd)</sup>'],
-    scale: 'None',
-    weight: 10,
+    notes: '1 b3 b5 b7',
+    fullName: 'half-diminished',
+    abbr: ['m<sup>7♭5</sup>', '<sup>ø</sup>'],
+    scale: 'Locrian or locrian ♯2',
+    weight: 13,
   },
+
   {
     notes: '1 3 #5',
     fullName: 'augmented',
@@ -316,17 +334,41 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 21,
   },
   {
+    notes: '1 3 4 5',
+    fullName: 'add4',
+    abbr: ['<sup>add11</sup>', '<sup>add4</sup>'],
+    scale: '???',
+    weight: 15,
+  },
+
+  {
     notes: '1',
     fullName: 'note',
     abbr: ['<sup>(no3, no5)</sup>'],
     scale: '???',
     weight: 100, // Prefer other names whenever possible
   },
+
   {
-    notes: '1 3 4 5',
-    fullName: 'add4',
-    abbr: ['<sup>add11</sup>', '<sup>add4</sup>'],
-    scale: '???',
-    weight: 15,
+    notes: '1 7',
+    fullName: 'major 7 (no3, no5)',
+    abbr: ['maj<sup>7(no3, no5)</sup>'],
+    scale: 'None',
+    weight: 10,
+  },
+  {
+    notes: '1 3',
+    fullName: 'major (no5)',
+    abbr: ['<sup>(no5)</sup>'],
+    scale: 'None',
+    weight: 14,
+  },
+
+  {
+    notes: '1 5',
+    fullName: 'fifth/power chord',
+    abbr: ['<sup>5</sup>', '<sup>(no3)</sup>'],
+    scale: 'None',
+    weight: 10,
   },
 ];

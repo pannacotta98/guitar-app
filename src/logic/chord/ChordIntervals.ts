@@ -41,6 +41,16 @@ for (const chord of CHORDS_SRC) {
       .concat(optionals)
       .sort((a, b) => a! - b!) // If any element is undefined an error is thrown above
       .join('|');
+    if (chordLookUp.has(chordVariation)) {
+      console.error(
+        'Overwriting data in chord lookup!\nKey:',
+        chordVariation,
+        '\nNew:',
+        chord,
+        '\nOld:',
+        chordLookUp.get(chordVariation)
+      );
+    }
     chordLookUp.set(chordVariation, chord);
   }
 }
