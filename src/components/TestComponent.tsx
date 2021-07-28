@@ -42,6 +42,7 @@ export function TestComponent() {
                   }}
                 ></td>
                 <td>{chord.fullName}</td>
+                <td>{chord.notes}</td>
                 {/* <td>{chord.scale}</td> */}
               </HoverableTableRow>
             ))}

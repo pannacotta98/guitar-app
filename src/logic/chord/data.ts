@@ -77,13 +77,13 @@ export const CHORDS_SRC: ChordType[] = [
     scale: 'lydian',
     weight: 22,
   },
-  {
-    notes: '1 3 (5) (7) (9) b13 (11)',
-    fullName: 'major seventh ♭6, or b13', // FIXME Detta känns väl inte helt huuundra
-    abbr: ['maj7♭6', 'ma7♭6', 'M7♭6'],
-    scale: 'Harmonic Maj',
-    weight: 30,
-  },
+  // {
+  //   notes: '1 3 (5) (7) (9) b13 (11)',
+  //   fullName: 'major seventh ♭6, or b13', // FIXME Detta känns väl inte helt huuundra
+  //   abbr: ['maj7♭6', 'ma7♭6', 'M7♭6'],
+  //   scale: 'Harmonic Maj',
+  //   weight: 30,
+  // },
   {
     notes: '1 3 (5) 9',
     fullName: 'major add 9',
@@ -187,13 +187,6 @@ export const CHORDS_SRC: ChordType[] = [
     fullName: 'eleventh',
     abbr: ['<sup>11</sup>'],
     scale: 'Usually mixolydian',
-    weight: 20,
-  },
-  {
-    notes: '1 4 (5) b7 (9) 11', // DOuble checkk
-    fullName: 'eleventh (special voicing)',
-    abbr: ['<sup>11</sup>'],
-    scale: 'Mixolydian',
     weight: 20,
   },
   {
@@ -334,11 +327,25 @@ export const CHORDS_SRC: ChordType[] = [
     weight: 21,
   },
   {
-    notes: '1 3 4 5',
-    fullName: 'add4',
+    notes: '1 3 4 (5)',
+    fullName: 'add 4',
     abbr: ['<sup>add11</sup>', '<sup>add4</sup>'],
     scale: '???',
     weight: 15,
+  },
+  {
+    notes: '1 3 4 (5) 6',
+    fullName: '6 add 4',
+    abbr: ['<sup>6add4<sup>'],
+    scale: '???',
+    weight: 20,
+  },
+  {
+    notes: '1 3 #5 b7',
+    fullName: 'augmented seventh',
+    abbr: ['+<sup>7</sup>', 'aug<sup>7</sup>', '<sup>7#5</sup>'],
+    scale: '???',
+    weight: 20,
   },
 
   {

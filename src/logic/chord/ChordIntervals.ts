@@ -54,3 +54,5 @@ for (const chord of CHORDS_SRC) {
     chordLookUp.set(chordVariation, chord);
   }
 }
+
+console.log('Size of chordLookup', chordLookUp.size);
