@@ -2,6 +2,7 @@ import React from 'react';
 import { PageBox } from './basicStyledElements';
 import styled from 'styled-components';
 import { CHORDS_SRC } from '../logic/chord/data';
+import { debugUnnameableChords } from '../logic/chord/ChordQuality';
 
 const HoverableTableRow = styled.tr`
   &:hover {
@@ -13,8 +14,18 @@ const HoverableTableRow = styled.tr`
 `;
 
 export function TestComponent() {
+  const [, updateState] = React.useState({});
+  const forceUpdate = React.useCallback(() => updateState({}), []);
   return (
     <PageBox>
+      <h2>Chord intervals that could not be named</h2>
+      <button onClick={forceUpdate}>Force update</button>
+      {[...debugUnnameableChords].map((intervals) => (
+        <p key={intervals}>
+          <code>{intervals}</code>
+        </p>
+      ))}
+
       <h2>All known chords ({CHORDS_SRC.length})</h2>
       <table>
         <tbody>

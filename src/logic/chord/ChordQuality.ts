@@ -35,18 +35,18 @@ export class ChordQuality {
       return new ChordQuality(value);
     }
 
-    console.log(
-      'Could not name chord with intervals:',
-      sortedIntervals,
-      sortedIntervals
-        .map((i) => {
-          for (const [key, value] of INTERVAL_NUMBERS) {
-            if (value === i) return key;
-          }
-          return '?';
-        })
-        .join('|')
-    );
+    const intervalsAsNames = sortedIntervals
+      .map((i) => {
+        for (const [key, value] of INTERVAL_NUMBERS) {
+          if (value === i) return key;
+        }
+        return '?';
+      })
+      .join(' — ');
+    debugUnnameableChords.add(intervalsAsNames);
+
     return null;
   }
 }
+
+export const debugUnnameableChords = new Set<string>();
