@@ -14,7 +14,7 @@ const NavigationItem = styled.li`
   display: inline;
 
   .selected {
-    border-bottom: var(--contrasting-text-color) solid 0.15rem;
+    border-bottom: var(--main-accent) solid 0.15rem;
   }
 
   a {
@@ -24,10 +24,7 @@ const NavigationItem = styled.li`
 `;
 
 const NavContainer = styled.nav`
-  background-color: var(--main-accent);
-  color: var(--contrasting-text-color);
   padding: 1.2rem var(--left-right-page-padding);
-  box-shadow: var(--main-shadow);
   position: relative;
   z-index: 10;
 `;

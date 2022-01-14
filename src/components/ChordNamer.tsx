@@ -31,8 +31,9 @@ const TextContainer = styled.div`
 
 const SmallText = styled.div`
   text-transform: uppercase;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
 `;
 
 const NormalCase = styled.span`
