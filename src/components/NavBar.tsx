@@ -36,25 +36,27 @@ const TextLogo = styled.h3`
   display: inline;
 `;
 
+const navLinkClassName = ({ isActive }: { isActive: boolean }) => (isActive ? 'selected' : '');
+
 export function NavBar() {
   return (
     <NavContainer>
       <TextLogo>LOGO</TextLogo>
       <Navigation>
         <NavigationItem>
-          <NavLink to="/scales" activeClassName="selected">
+          <NavLink to="/scales" className={navLinkClassName}>
             Scales
           </NavLink>
         </NavigationItem>
 
         <NavigationItem>
-          <NavLink exact to="/" activeClassName="selected">
+          <NavLink to="/" className={navLinkClassName}>
             Chords
           </NavLink>
         </NavigationItem>
 
         <NavigationItem>
-          <NavLink to="/test" activeClassName="selected">
+          <NavLink to="/test" className={navLinkClassName}>
             Test
           </NavLink>
         </NavigationItem>

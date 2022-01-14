@@ -5,7 +5,7 @@ import { TestComponent } from './TestComponent';
 import { ScaleVisualizer } from './ScaleVisualizer';
 import { NotFound } from './NotFound';
 import { GlobalStateProvider } from '../globalState';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import { Settings } from './Settings';
 
 export function App() {
@@ -14,27 +14,13 @@ export function App() {
       <BrowserRouter>
         <div className="App">
           <NavBar />
-          <Switch>
-            <Route exact path="/">
-              <ChordNamer />
-            </Route>
-
-            <Route path="/scales">
-              <ScaleVisualizer />
-            </Route>
-
-            <Route path="/test">
-              <TestComponent />
-            </Route>
-
-            <Route path="/settings">
-              <Settings />
-            </Route>
-
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<ChordNamer />} />
+            <Route path="/scales" element={<ScaleVisualizer />} />
+            <Route path="/test" element={<TestComponent />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </BrowserRouter>
     </GlobalStateProvider>
