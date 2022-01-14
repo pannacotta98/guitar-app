@@ -1,6 +1,7 @@
-import { ChordIntervals } from './ChordIntervals';
-import { INTERVAL_NUMBERS } from '../musicalData';
-import { ChordType } from '../musicalData';
+import { INTERVAL_NUMBERS } from '../interval/data';
+import { increasingly } from '../util';
+import { chordLookUp } from './ChordIntervals';
+import { ChordType } from './data';
 
 export class ChordQuality {
   readonly notes: string;
@@ -17,22 +18,27 @@ export class ChordQuality {
     this.weight = chordType.weight;
   }
 
+  toString() {
+    return this.abbr[0];
+  }
+
   /**
    * ...
    * @param {number[]} intervals A list of the intervals in half-notes between
    * the root and each note. Ex: [0, 2, 4, 7] where 0 is the root
    */
   static fromIntervals(intervals: number[]) {
-    const value = ChordIntervals.getInstance().chordLookUp.get(intervals.join('|'));
-
+    const sortedIntervals = [...intervals].sort(increasingly);
+    const mapKey = sortedIntervals.join('|');
+    const value = chordLookUp.get(mapKey);
     if (value !== undefined) {
       return new ChordQuality(value);
     }
 
     console.log(
       'Could not name chord with intervals:',
-      intervals,
-      intervals
+      sortedIntervals,
+      sortedIntervals
         .map((i) => {
           for (const [key, value] of INTERVAL_NUMBERS) {
             if (value === i) return key;

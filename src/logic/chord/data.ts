@@ -1,22 +1,4 @@
-// prettier-ignore
-const INTERVAL_NUMBERS = new Map<string, number>([
-  ['1' , 0 ],
-  ['b2', 1 ], ['b9' , 1],
-  ['2' , 2 ], ['9'  , 2],
-  ['b3', 3 ], ['#9' , 3],
-  ['3' , 4 ],
-  ['4' , 5 ], ['11' , 5],
-  ['b5', 6 ], ['#11', 6],
-  ['5' , 7 ],
-  ['b6', 8 ], ['b13', 8], ['#5' , 8],
-  ['6' , 9 ], ['13' , 9], ['bb7', 9],
-  ['b7', 10],
-  ['7' , 11]
-]);
-
-const NOTE_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
-
-interface ChordType {
+export interface ChordType {
   notes: string;
   fullName: string;
   abbr: string[];
@@ -31,7 +13,7 @@ interface ChordType {
  * simple and Am/maj7#9b11 is complicated.
  * A large number means complicated and a low one means simple
  */
-const CHORDS_SRC: ChordType[] = [
+export const CHORDS_SRC: ChordType[] = [
   {
     notes: '1 3 5',
     fullName: 'major',
@@ -124,7 +106,7 @@ const CHORDS_SRC: ChordType[] = [
   //   weight: 30,
   // },
   // {
-  //   notes: '1 3 (5) b7 b9 (#9,b5,6..)', // TODO Does this notation work!?
+  //   notes: '1 3 (5) b7 b9 (#9,b5,6..)', // TODO Does this notation work!? (no)
   //   fullName: 'dominant ♭9',
   //   abbr: ['<sup>7♭9</sup>'],
   //   scale: 'Half-tone/tone (8 note scale), 1/2 step/whole step Diminished scale, Octatonic scale.',
@@ -348,6 +330,3 @@ const CHORDS_SRC: ChordType[] = [
     weight: 15,
   },
 ];
-
-export { INTERVAL_NUMBERS, CHORDS_SRC, NOTE_NAMES };
-export type { ChordType };

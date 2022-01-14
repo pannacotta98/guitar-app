@@ -18,15 +18,19 @@ export function App() {
             <Route exact path="/">
               <ChordNamer />
             </Route>
+
             <Route path="/scales">
               <ScaleVisualizer />
             </Route>
+
             <Route path="/test">
               <TestComponent />
             </Route>
+
             <Route path="/settings">
               <Settings />
             </Route>
+
             <Route path="*">
               <NotFound />
             </Route>

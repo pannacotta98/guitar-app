@@ -21,3 +21,19 @@ export function combine<T>(a: T[]) {
   all.push(a);
   return all;
 }
+
+export function occurences<T>(input: T[]) {
+  const counts = new Map<T, number>();
+  for (const element of input) {
+    const elementOccurences = counts.get(element);
+    if (elementOccurences !== undefined) counts.set(element, elementOccurences + 1);
+    else counts.set(element, 1);
+  }
+  return counts;
+}
+
+/** Modulo operator as opposed to the built-in remainder operator (%) */
+export const modulo = (a: number, n: number) => ((a % n) + n) % n;
+
+/** Sorting function for numbers */
+export const increasingly = (a: number, b: number) => a - b;
