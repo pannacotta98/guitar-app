@@ -6,6 +6,25 @@ import { normalizeInternalNote, Note } from '../logic/note/Note';
 import { Scale } from '../logic/scale/Scale';
 import { MultiWaySwitch } from './MultiWaySwitch';
 import { NOTE_NAMES } from '../logic/note/data';
+import { Dropdown } from './Dropdown';
+import styled from 'styled-components';
+
+const OptionsContainer = styled.div`
+  padding: 1.5rem 0 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &:first-child {
+    /* width: 20rem; */
+    flex-grow: 0;
+  }
+
+  & > :last-child {
+    flex-grow: 1;
+  }
+`;
 
 export function ScaleVisualizer() {
   const globalContext = useContext(GlobalContext);
@@ -29,18 +48,18 @@ export function ScaleVisualizer() {
     <PageBox>
       <h1>Scales</h1>
 
-      {/* https://reactjs.org/docs/forms.html */}
-      <select value={selectedScale} onChange={(event) => setSelectedScale(event.target.value)}>
-        {Scale.allNames().map((name) => (
-          <option key={name}>{name}</option>
-        ))}
-      </select>
-
-      <MultiWaySwitch
-        options={NOTE_NAMES}
-        selected={root.nameWithoutOctave()}
-        setSelected={(s) => setRoot(Note.fromName(s + '0'))}
-      />
+      <OptionsContainer>
+        <MultiWaySwitch
+          options={NOTE_NAMES}
+          selected={root.nameWithoutOctave()}
+          setSelected={(s) => setRoot(Note.fromName(s + '0'))}
+        />
+        <Dropdown
+          options={Scale.allNames()}
+          selected={selectedScale}
+          setSelected={setSelectedScale}
+        />
+      </OptionsContainer>
 
       <BigFretBoard
         activeNotes={activeNotes}

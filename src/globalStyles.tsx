@@ -20,6 +20,8 @@ ${styleResetsString}
   --fret-color: #B4B4B4;
   --fret-marker-color: #B4B4B4;
 
+  --glass-color: rgba(255, 255, 255, 0.3);
+
   /* Shadows */
   --main-shadow: 5px 5px 13px 0px rgba(0, 0, 0, 0.2);
   --svg-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);

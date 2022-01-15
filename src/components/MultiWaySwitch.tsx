@@ -4,12 +4,9 @@ import { motion } from 'framer-motion';
 
 const Container = styled.div`
   display: inline-block;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--glass-color);
   padding: 0.4rem;
   border-radius: 0.5rem;
-
-  /* TEMP */
-  margin: 2rem;
 `;
 
 const Label = styled(motion.div)<{ selected: boolean }>`
