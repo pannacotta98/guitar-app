@@ -42,8 +42,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--dark-background);
-  background: url(${backgroundImg}) no-repeat center center fixed; ;
-  background-size: cover;
+  /* background: url(${backgroundImg}) no-repeat center center fixed;
+  background-size: cover; */
 }
 
 *, *:before, *:after {

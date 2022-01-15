@@ -10,6 +10,7 @@
     "@types/node": "^17.0.8",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
+    "framer-motion": "^5.6.0",
     "prettier": "^2.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
