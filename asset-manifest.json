@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/static/js/main.9d815500.js",
-    "static/media/background.jpg": "/static/media/background.5189e171894b7d6bf416.jpg",
-    "index.html": "/index.html",
-    "main.9d815500.js.map": "/static/js/main.9d815500.js.map"
+    "main.js": "/guitar-app/static/js/main.cdad7b6b.js",
+    "static/media/background.jpg": "/guitar-app/static/media/background.5189e171894b7d6bf416.jpg",
+    "index.html": "/guitar-app/index.html",
+    "main.cdad7b6b.js.map": "/guitar-app/static/js/main.cdad7b6b.js.map"
   },
   "entrypoints": [
-    "static/js/main.9d815500.js"
+    "static/js/main.cdad7b6b.js"
   ]
 }
