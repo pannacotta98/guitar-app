@@ -11,7 +11,7 @@ import { Settings } from './Settings';
 export function App() {
   return (
     <GlobalStateProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div className="App">
           <NavBar />
           <Routes>
