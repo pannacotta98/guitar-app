@@ -15,7 +15,7 @@ export function App() {
         <div className="App">
           <NavBar />
           <Routes>
-            <Route path="/" element={<ChordNamer />} />
+            <Route path="/chords" element={<ChordNamer />} />
             <Route path="/scales" element={<ScaleVisualizer />} />
             <Route path="/test" element={<TestComponent />} />
             <Route path="/settings" element={<Settings />} />

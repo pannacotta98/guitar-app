@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import isDev from './../logic/util';
 
 const Navigation = styled.ul`
   display: inline;
@@ -38,25 +39,28 @@ const navLinkClassName = ({ isActive }: { isActive: boolean }) => (isActive ? 's
 export function NavBar() {
   return (
     <NavContainer>
-      <TextLogo>WORK IN PROGRESS</TextLogo>
+      <TextLogo>WORK IN PROGRESS{isDev() && ' [dev env]'}</TextLogo>
       <Navigation>
         <NavigationItem>
           <NavLink to="/scales" className={navLinkClassName}>
             Scales
           </NavLink>
         </NavigationItem>
+        {isDev() && (
+          <>
+            <NavigationItem>
+              <NavLink to="/chords" className={navLinkClassName}>
+                Chords
+              </NavLink>
+            </NavigationItem>
 
-        <NavigationItem>
-          <NavLink to="/" className={navLinkClassName}>
-            Chords
-          </NavLink>
-        </NavigationItem>
-
-        <NavigationItem>
-          <NavLink to="/test" className={navLinkClassName}>
-            Test
-          </NavLink>
-        </NavigationItem>
+            <NavigationItem>
+              <NavLink to="/test" className={navLinkClassName}>
+                Test
+              </NavLink>
+            </NavigationItem>
+          </>
+        )}
       </Navigation>
     </NavContainer>
   );

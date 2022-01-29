@@ -37,3 +37,8 @@ export const modulo = (a: number, n: number) => ((a % n) + n) % n;
 
 /** Sorting function for numbers */
 export const increasingly = (a: number, b: number) => a - b;
+
+const development: boolean = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+export default function isDev(): boolean {
+  return development;
+}
