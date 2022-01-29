@@ -39,7 +39,7 @@ const navLinkClassName = ({ isActive }: { isActive: boolean }) => (isActive ? 's
 export function NavBar() {
   return (
     <NavContainer>
-      <TextLogo>WORK IN PROGRESS{isDev() && ' [dev env]'}</TextLogo>
+      <TextLogo>WORK IN PROGRESS{isDev() && ' [in dev env]'}</TextLogo>
       <Navigation>
         <NavigationItem>
           <NavLink to="/scales" className={navLinkClassName}>
