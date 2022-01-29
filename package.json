@@ -25,6 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://pannacotta98.github.io/guitar-app/",
   "eslintConfig": {
     "extends": "react-app"
   },
