@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { BigFretBoard } from './BigFretBoard';
 import { GlobalContext } from '../globalState';
-import { PageBox } from './basicStyledElements';
+import { LimitedWidthBox } from './basicStyledElements';
 import { normalizeInternalNote, Note } from '../logic/note/Note';
 import { Scale } from '../logic/scale/Scale';
 import { MultiWaySwitch } from './MultiWaySwitch';
@@ -17,7 +17,6 @@ const OptionsContainer = styled.div`
   flex-wrap: wrap;
 
   &:first-child {
-    /* width: 20rem; */
     flex-grow: 0;
   }
 
@@ -45,21 +44,23 @@ export function ScaleVisualizer() {
   );
 
   return (
-    <PageBox>
-      <h1>Scales</h1>
+    <div>
+      <LimitedWidthBox>
+        <h1>Scales</h1>
 
-      <OptionsContainer>
-        <MultiWaySwitch
-          options={NOTE_NAMES}
-          selected={root.nameWithoutOctave()}
-          setSelected={(s) => setRoot(Note.fromName(s + '0'))}
-        />
-        <Dropdown
-          options={Scale.allNames()}
-          selected={selectedScale}
-          setSelected={setSelectedScale}
-        />
-      </OptionsContainer>
+        <OptionsContainer>
+          <MultiWaySwitch
+            options={NOTE_NAMES}
+            selected={root.nameWithoutOctave()}
+            setSelected={(s) => setRoot(Note.fromName(s + '0'))}
+          />
+          <Dropdown
+            options={Scale.allNames()}
+            selected={selectedScale}
+            setSelected={setSelectedScale}
+          />
+        </OptionsContainer>
+      </LimitedWidthBox>
 
       <BigFretBoard
         activeNotes={activeNotes}
@@ -67,6 +68,7 @@ export function ScaleVisualizer() {
           console.warn('Det här skulle jag ju fixa (ScaleVisualizer)');
         }}
       />
-    </PageBox>
+    </div>
   );
 }
+

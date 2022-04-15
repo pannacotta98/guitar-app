@@ -27,6 +27,7 @@ ${styleResetsString}
   --svg-shadow: 5px 5px 13px rgba(0, 0, 0, 0.2);
 
   --left-right-page-padding: 2rem;
+  --page-max-width: 60rem;
 
   /* Breakpoints */
   /* TODO Turns out css variables dont work
@@ -61,7 +62,6 @@ b {
   font-weight: bold;
 }
 
-
 h1, h2, h3, h4, h5, h6 {
   color: var(--contrasting-text-color);
   font-weight: bold;
@@ -79,3 +79,4 @@ h3 {
   font-size: 1.2rem;
 }
 `;
+

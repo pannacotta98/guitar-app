@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import isDev from './../logic/util';
+import { LimitedWidthBox } from './basicStyledElements';
 
 const Navigation = styled.ul`
   display: inline;
@@ -24,12 +25,6 @@ const NavigationItem = styled.li`
   }
 `;
 
-const NavContainer = styled.nav`
-  padding: 1.2rem var(--left-right-page-padding);
-  position: relative;
-  z-index: 10;
-`;
-
 const TextLogo = styled.h3`
   display: inline;
 `;
@@ -38,7 +33,7 @@ const navLinkClassName = ({ isActive }: { isActive: boolean }) => (isActive ? 's
 
 export function NavBar() {
   return (
-    <NavContainer>
+    <LimitedWidthBox>
       <TextLogo>WORK IN PROGRESS{isDev() && ' [in dev env]'}</TextLogo>
       <Navigation>
         <NavigationItem>
@@ -62,6 +57,7 @@ export function NavBar() {
           </>
         )}
       </Navigation>
-    </NavContainer>
+    </LimitedWidthBox>
   );
 }
+

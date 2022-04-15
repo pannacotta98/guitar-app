@@ -10,8 +10,8 @@ const Container = styled.div`
 `;
 
 const Label = styled(motion.div)<{ selected: boolean }>`
-  * {
-    padding: 0.4rem 0.9rem;
+  div {
+    padding: 0.6rem 0.9rem;
   }
   display: inline-block;
   cursor: pointer;
@@ -50,3 +50,4 @@ export function MultiWaySwitch({ options, selected, setSelected }: Props) {
     </Container>
   );
 }
+

@@ -79,7 +79,6 @@ const StyledSvg = styled.svg`
     @media (hover: hover) {
       &:hover {
         opacity: 0.7;
-
         .note {
           stroke: var(--main-accent);
           stroke-width: 5px;
@@ -125,7 +124,7 @@ type Props = {
 export function BigFretBoard({ activeNotes, toggleNote }: Props) {
   return (
     <Container>
-      {/* TODO fixa viewBox */}
+      {/* TODO Fix viewBox */}
       <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="-30 0 1000 250">
         <rect className="board" x="0" y="0" width={size.width} height={size.height} rx="16" />
         <FretMarkers />
@@ -180,6 +179,7 @@ function FretMarkers() {
         r={markerSize}
       />
 
+      {/* Double markers at fret 12 */}
       <circle
         className="marker"
         cx={fretPositions[12] - fretSpacing / 2}
@@ -274,3 +274,4 @@ function FretNumbers() {
     </g>
   );
 }
+
