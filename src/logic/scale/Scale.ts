@@ -9,7 +9,7 @@ export class Scale {
   }
 
   static fromRootAndName(root: Note, name: string) {
-    const notes = [root];
+    const notes: Note[] = [];
     const intervals = SCALES_SRC.get(name);
 
     if (intervals === undefined) return null;
@@ -22,7 +22,6 @@ export class Scale {
 
       // TODO THIS WOULD NOT WORK CORRECTLY WITH THE OCTAVE THinG
       // !!!!
-      // !!
       notes.push(root.plusHalftones(interval));
     });
 
@@ -33,3 +32,4 @@ export class Scale {
     return Array.from(SCALES_SRC.keys());
   }
 }
+

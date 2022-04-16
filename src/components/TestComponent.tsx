@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageBox } from './basicStyledElements';
+import { LimitedWidthBox, PageBox } from './basicStyledElements';
 import styled from 'styled-components';
 import { CHORDS_SRC } from '../logic/chord/data';
 
@@ -14,7 +14,7 @@ const HoverableTableRow = styled.tr`
 
 export function TestComponent() {
   return (
-    <PageBox>
+    <LimitedWidthBox>
       <h2>All known chords ({CHORDS_SRC.length})</h2>
       <table>
         <tbody>
@@ -36,6 +36,7 @@ export function TestComponent() {
             ))}
         </tbody>
       </table>
-    </PageBox>
+    </LimitedWidthBox>
   );
 }
+

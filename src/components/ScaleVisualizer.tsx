@@ -43,6 +43,16 @@ export function ScaleVisualizer() {
     )
   );
 
+  const noteColors = globalContext.tuning.notesOnFretBoard.map((string) =>
+    string.map((note) =>
+      notesInScale === undefined
+        ? 'black'
+        : root.equals(note.normalized())
+        ? '#da5b5b'
+        : 'var(--main-accent)'
+    )
+  );
+
   return (
     <div>
       <LimitedWidthBox>
@@ -64,6 +74,7 @@ export function ScaleVisualizer() {
 
       <BigFretBoard
         activeNotes={activeNotes}
+        noteColors={noteColors}
         toggleNote={() => {
           console.warn('Det här skulle jag ju fixa (ScaleVisualizer)');
         }}
