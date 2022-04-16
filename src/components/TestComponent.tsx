@@ -1,5 +1,5 @@
 import React from 'react';
-import { LimitedWidthBox, PageBox } from './basicStyledElements';
+import { LimitedWidthBox } from './basicStyledElements';
 import styled from 'styled-components';
 import { CHORDS_SRC } from '../logic/chord/data';
 

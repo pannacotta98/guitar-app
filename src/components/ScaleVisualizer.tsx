@@ -44,13 +44,7 @@ export function ScaleVisualizer() {
   );
 
   const noteColors = globalContext.tuning.notesOnFretBoard.map((string) =>
-    string.map((note) =>
-      notesInScale === undefined
-        ? 'black'
-        : root.equals(note.normalized())
-        ? '#da5b5b'
-        : 'var(--main-accent)'
-    )
+    string.map((note) => (root.equals(note.normalized()) ? '#da5b5b' : 'var(--main-accent)'))
   );
 
   return (
